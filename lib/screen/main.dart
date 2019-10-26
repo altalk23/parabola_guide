@@ -14,7 +14,7 @@ class _MainScreenState extends State<MainScreen> {
     Widget build(BuildContext context) {
         return AppScaffold(
             appBar: AppBar(
-                title: Text('Title'),
+                title: Text('Parabola Guide'),
             ),
             body: Center(
                 child: ExpansionList(

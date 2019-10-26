@@ -1,35 +1,59 @@
 class Entry {
     Entry(this.title, [this.children = const <Entry>[]]);
+    Entry.withDepth(this.title, this.depth, [this.children = const <Entry>[]]);
     
     final String title;
     final List<Entry> children;
+    int depth;
 }
 
 final List<Entry> categories = <Entry>[
     Entry(
-        'Chapter A',
+        'Find roots from given',
         <Entry>[
+            Entry('Factored form'),
+            Entry('Vertex form'),
             Entry(
-                'Section A0',
+                'Standard form using',
                 <Entry>[
-                    Entry('Item A0.1'),
-                    Entry('Item A0.2'),
-                    Entry('Item A0.3'),
+                    Entry('Factoring'),
+                    Entry('Completing the square'),
+                    Entry('Discriminant'),
                 ],
             ),
-            Entry('Section A1'),
-            Entry('Section A2'),
         ],
     ),
     Entry(
-        'Chapter B',
+        'Find equation with',
         <Entry>[
-            Entry('Section B0'),
-            Entry('Section B1'),
+            Entry(
+                '3 unknowns with given',
+                <Entry>[
+                    Entry('Two roots and another point'),
+                    Entry('Vertex and another point'),
+                    Entry('One root and two other points'),
+                    Entry('Y-intercept and two other points'),
+                    Entry('Three points'),
+                ],
+            ),
+            Entry(
+                '2 unknowns with given',
+                <Entry>[
+                    Entry('Two roots'),
+                    Entry('Vertex'),
+                    Entry('Two points'),
+                ],
+            ),
+            Entry(
+                '1 unknown with given',
+                <Entry>[
+                    Entry('One point'),
+                ],
+            ),
         ],
     ),
     Entry(
-        'Chapter C',
+        'Find intersections',
         <Entry>[
             Entry('Section C0'),
             Entry('Section C1'),
@@ -43,4 +67,14 @@ final List<Entry> categories = <Entry>[
             ),
         ],
     ),
-];
+].map(_getDepth).toList();
+
+Entry _getDepth(Entry entry) {
+    entry.depth ??= 0;
+    print(entry.title);
+    print(entry.depth);
+    entry.children.forEach((child) {
+        child.depth = entry.depth + 1;
+    });
+    return Entry.withDepth(entry.title, entry.depth, entry.children.map(_getDepth).toList());
+}

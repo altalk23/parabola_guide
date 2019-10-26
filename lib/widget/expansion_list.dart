@@ -1,10 +1,5 @@
-// Copyright 2017 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/category_entry.dart';
-import 'package:parabola_guide/widget/scaffold.dart';
 
 class ExpansionList extends StatelessWidget {
     final List<Entry> entry;
@@ -16,8 +11,9 @@ class ExpansionList extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return ListView.builder(
-            itemBuilder: (BuildContext context, int index) =>
-              EntryItem(entry[index], title, child),
+            itemBuilder: (BuildContext context, int index) {
+              return EntryItem(entry[index], title, child);
+            },
             itemCount: entry.length,
         );
     }
@@ -30,14 +26,22 @@ class EntryItem extends StatelessWidget {
     
     final Widget Function(String) child;
     final Widget Function(String) title;
-
+    
     final Entry entry;
     
     Widget _buildTiles(Entry root) {
-        if (root.children.isEmpty) return child(root.title);
+        if (root.children.isEmpty) {
+            return Padding(
+                padding: EdgeInsets.only(left: 16.0 * (root.depth - 1)),
+                child: child(root.title),
+            );
+        }
         return ExpansionTile(
             key: PageStorageKey<Entry>(root),
-            title: title(root.title),
+            title: Padding(
+                padding: EdgeInsets.only(left: 16.0 * root.depth),
+                child: title(root.title),
+            ),
             children: root.children.map(_buildTiles).toList(),
         );
     }
