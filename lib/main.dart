@@ -9,6 +9,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             theme: ThemeData(
                 backgroundColor: Color(0xFFEEFFFF),
+                primaryColor: Color(0xFF55CC77),
+                accentColor: Color(0xFF7733AA),
                 fontFamily: 'Comfortaa'
             ),
             home: MainScreen(),

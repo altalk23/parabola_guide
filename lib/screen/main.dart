@@ -7,10 +7,38 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+    int _counter = 0;
+    
     @override
     Widget build(BuildContext context) {
         return AppScaffold(
-            body: Text("asd"),
+            appBar: AppBar(
+                title: Text('Title'),
+            ),
+            body: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                        MaterialButton(
+                            onPressed: () {
+                                setState(() {
+                                    _counter += 10;
+                                });
+                            },
+                            child: Text('Increase 10'),
+                        ),
+                        Text('Sample Text #$_counter'),
+                    ],
+                ),
+            ),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+                onPressed: () {
+                    setState(() {
+                        _counter++;
+                    });
+                },
+            ),
         );
     }
 }
