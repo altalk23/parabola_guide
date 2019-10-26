@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parabola_guide/widget/button.dart';
 import 'package:parabola_guide/widget/scaffold.dart';
 
 class MainScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                        MaterialButton(
+                        AppButton(
                             onPressed: () {
                                 setState(() {
                                     _counter += 10;
@@ -27,6 +28,7 @@ class _MainScreenState extends State<MainScreen> {
                             },
                             child: Text('Increase 10'),
                         ),
+                        SizedBox(height: 16,),
                         Text('Sample Text #$_counter'),
                     ],
                 ),
