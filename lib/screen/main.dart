@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/category_entry.dart';
 import 'package:parabola_guide/widget/expansion_list.dart';
+import 'package:parabola_guide/widget/list_tile.dart';
 import 'package:parabola_guide/widget/scaffold.dart';
 
 class MainScreen extends StatefulWidget {
@@ -9,8 +10,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-    int _counter = 0;
-    
     @override
     Widget build(BuildContext context) {
         return AppScaffold(
@@ -21,19 +20,16 @@ class _MainScreenState extends State<MainScreen> {
                 child: ExpansionList(
                     entry: categories,
                     child: (String title) =>
-                      ListTile(
+                      AppListTile(
                           title: Text(title),
+                          onTap: () => print('a'),
                       ),
-                    title: (String title) => Text(title),
+                    title: (String title) =>
+                      Material(
+                          color: Colors.transparent,
+                          child: Text(title),
+                      ),
                 ),
-            ),
-            floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add),
-                onPressed: () {
-                    setState(() {
-                        _counter++;
-                    });
-                },
             ),
         );
     }
