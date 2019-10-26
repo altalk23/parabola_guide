@@ -1,6 +1,6 @@
 # Parabola Guide
 
-Categories:  
+### Categories:  
 -[ ] Find roots with given 
     -[ ] Factored form
     -[ ] Vertex form (turn into standard)   
