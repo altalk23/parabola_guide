@@ -1,0 +1,32 @@
+# Parabola Guide
+
+Categories:  
+-[ ] Find roots with given 
+    -[ ] Factored form
+    -[ ] Vertex form (turn into standard)   
+    -[ ] Standard form using
+        -[ ] Factoring
+        -[ ] Completing the square
+        -[ ] Discriminant
+-[ ] Given an equation, find 
+    -[ ] Sum and product of roots
+    -[ ] Axis of symmetry (vertex)
+-[ ] Find equation with given
+    -[ ] Two roots and another point
+    -[ ] Vertex and another point
+    -[ ] One root and two other points
+    -[ ] Y intercept and two other points
+    -[ ] Three points
+    -[ ] One of a, b or c and two points
+    -[ ] Two of a, b or c and a point
+-[ ] Given an equation, judge its roots from discriminant
+-[ ] Find intersections of a parabola and a line
+-[ ] Find intersections of two parabolas
+-[ ] Sketch the graph labeling important points in given
+    -[ ] Factored form
+    -[ ] Vertex form 
+    -[ ] Standard form
+-[ ] Find a line that is tangent to parabola if
+    -[ ] One of a, b or c of parabola is unknown
+    -[ ] One of a or b of line is unknown
+-[ ] Find sum of roots with given vertex
