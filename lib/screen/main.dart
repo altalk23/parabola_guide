@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:parabola_guide/widget/button.dart';
+import 'package:parabola_guide/category_entry.dart';
+import 'package:parabola_guide/widget/expansion_list.dart';
 import 'package:parabola_guide/widget/scaffold.dart';
 
 class MainScreen extends StatefulWidget {
@@ -17,20 +18,13 @@ class _MainScreenState extends State<MainScreen> {
                 title: Text('Title'),
             ),
             body: Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                        AppButton(
-                            onPressed: () {
-                                setState(() {
-                                    _counter += 10;
-                                });
-                            },
-                            child: Text('Increase 10'),
-                        ),
-                        SizedBox(height: 16,),
-                        Text('Sample Text #$_counter'),
-                    ],
+                child: ExpansionList(
+                    entry: categories,
+                    child: (String title) =>
+                      ListTile(
+                          title: Text(title),
+                      ),
+                    title: (String title) => Text(title),
                 ),
             ),
             floatingActionButton: FloatingActionButton(
