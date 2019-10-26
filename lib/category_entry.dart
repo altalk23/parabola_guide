@@ -71,8 +71,6 @@ final List<Entry> categories = <Entry>[
 
 Entry _getDepth(Entry entry) {
     entry.depth ??= 0;
-    print(entry.title);
-    print(entry.depth);
     entry.children.forEach((child) {
         child.depth = entry.depth + 1;
     });
