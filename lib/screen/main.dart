@@ -19,15 +19,26 @@ class _MainScreenState extends State<MainScreen> {
             body: Center(
                 child: ExpansionList(
                     entry: categories,
-                    child: (String title) =>
+                    child: (String title, int id) => // id is needed for page routing
                       AppListTile(
-                          title: Text(title),
-                          onTap: () => print('a'),
+                          title: Text(
+                              title,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                              ),
+                          ),
+                          onTap: () {
+                              print('#$id');
+                          },
                       ),
-                    title: (String title) =>
-                      Material(
-                          color: Colors.transparent,
-                          child: Text(title),
+                    title: (String title, int id) =>
+                      Text(
+                          title,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                          ),
                       ),
                 ),
             ),
