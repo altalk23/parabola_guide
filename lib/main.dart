@@ -27,6 +27,13 @@ class MyApp extends StatelessWidget {
                   },
               ),
               accentColor: Color(0xFF7733AA),
+              cardTheme: CardTheme(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                      ),
+                  ),
+              ),
               fontFamily: 'Comfortaa'
             ),
             home: MainScreen(),

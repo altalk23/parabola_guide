@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parabola_guide/widget/card.dart';
 import 'package:parabola_guide/widget/scaffold.dart';
 
 class MainScreen extends StatefulWidget {
@@ -42,25 +43,13 @@ class CardScreen extends StatelessWidget {
                         child: Flex(
                             direction: Axis.horizontal,
                             children: <Widget>[
-                                Expanded(
-                                    child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        child: Card(
-                                            child: Center(
-                                                child: Text('Card 1'),
-                                            ),
-                                        ),
-                                    ),
+                                AppCard(
+                                    child: Text('Card 1'),
+                                    color: Color(0xFFFF88AA),
                                 ),
-                                Expanded(
-                                    child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        child: Card(
-                                            child: Center(
-                                                child: Text('Card 2'),
-                                            ),
-                                        ),
-                                    ),
+                                AppCard(
+                                    child: Text('Card 2'),
+                                    color: Color(0xFF88AAFF),
                                 ),
                             ],
                         ),
@@ -69,25 +58,13 @@ class CardScreen extends StatelessWidget {
                         child: Flex(
                             direction: Axis.horizontal,
                             children: <Widget>[
-                                Expanded(
-                                    child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        child: Card(
-                                            child: Center(
-                                                child: Text('Card 3'),
-                                            ),
-                                        ),
-                                    ),
+                                AppCard(
+                                    child: Text('Card 3'),
+                                    color: Color(0xFFEE77FF),
                                 ),
-                                Expanded(
-                                    child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        child: Card(
-                                            child: Center(
-                                                child: Text('Card 4'),
-                                            ),
-                                        ),
-                                    ),
+                                AppCard(
+                                    child: Text('Card 4'),
+                                    color: Color(0xFFEEFF77),
                                 ),
                             ],
                         ),
