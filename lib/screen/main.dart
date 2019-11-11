@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parabola_guide/screen/scr1.dart';
 import 'package:parabola_guide/widget/card.dart';
 import 'package:parabola_guide/widget/scaffold.dart';
 
@@ -19,6 +20,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
             body: SafeArea(
                 child: PageView(
+                    
                     controller: pageController,
                     scrollDirection: Axis.vertical,
                     children: <Widget>[
@@ -44,6 +46,14 @@ class CardScreen extends StatelessWidget {
                             direction: Axis.horizontal,
                             children: <Widget>[
                                 AppCard(
+                                    onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Screen1(),
+                                            ),
+                                        );
+                                    },
                                     child: Text('Card 1'),
                                     color: Color(0xFFFF88AA),
                                 ),

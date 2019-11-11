@@ -2,19 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:tinycolor/tinycolor.dart';
 
 class AppScaffold extends StatefulWidget {
-    const AppScaffold({Key key, this.appBar, this.body, this.floatingActionButton,}) : super(key: key);
+    const AppScaffold({
+        Key key,
+        this.appBar,
+        this.body,
+        this.floatingActionButton,
+        this.themeData,
+    }) : super(key: key);
     
     final AppBar appBar;
     final Widget body;
     final FloatingActionButton floatingActionButton;
+    final ThemeData themeData;
+    
     
     @override
     _AppScaffoldState createState() => _AppScaffoldState();
 }
 
 class _AppScaffoldState extends State<AppScaffold> {
+    ThemeData themeData;
+    
     @override
     Widget build(BuildContext context) {
+        themeData = widget.themeData;
+        themeData ??= Theme.of(context);
         return Scaffold(
             appBar: widget.appBar,
             body: Container(
@@ -23,14 +35,10 @@ class _AppScaffoldState extends State<AppScaffold> {
                         begin: Alignment.bottomLeft,
                         end: Alignment(1.0, 0.5),
                         colors: <Color>[
-                            TinyColor(Theme
-                              .of(context)
-                              .backgroundColor)
+                            TinyColor(themeData.backgroundColor)
                               .darken(5)
                               .color,
-                            Theme
-                              .of(context)
-                              .backgroundColor,
+                            themeData.backgroundColor,
                         ],
                     ),
                 ),

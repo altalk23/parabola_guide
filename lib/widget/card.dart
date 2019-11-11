@@ -5,9 +5,11 @@ class AppCard extends StatelessWidget {
         Key key,
         this.color,
         this.child,
+        this.onTap,
     }) : super(key: key);
     final Color color;
     final Widget child;
+    final VoidCallback onTap;
     
     @override
     Widget build(BuildContext context) {
@@ -17,8 +19,14 @@ class AppCard extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: Card(
                     color: color,
-                    child: Center(
-                        child: child,
+                    child: Material(
+                        color: Color(0x00000000),
+                        child: InkWell(
+                            onTap: onTap,
+                            child: Center(
+                                child: child,
+                            ),
+                        ),
                     ),
                 ),
             ),
