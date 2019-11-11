@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parabola_guide/category_entry.dart';
+import 'package:parabola_guide/old/category_entry.dart';
 
 class ExpansionList extends StatelessWidget {
     final List<Entry> entry;

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:parabola_guide/category_entry.dart';
-import 'package:parabola_guide/widget/expansion_list.dart';
-import 'package:parabola_guide/widget/list_tile.dart';
 import 'package:parabola_guide/widget/scaffold.dart';
 
 class MainScreen extends StatefulWidget {
@@ -10,38 +7,100 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+    
+    PageController pageController = PageController();
+    
     @override
     Widget build(BuildContext context) {
         return AppScaffold(
             appBar: AppBar(
                 title: Text('Parabola Guide'),
             ),
-            body: Center(
-                child: ExpansionList(
-                    entry: categories,
-                    child: (String title, int id) => // id is needed for page routing
-                      AppListTile(
-                          title: Text(
-                              title,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                              ),
-                          ),
-                          onTap: () {
-                              print('#$id');
-                          },
-                      ),
-                    title: (String title, int id) =>
-                      Text(
-                          title,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                          ),
-                      ),
+            body: SafeArea(
+                child: PageView(
+                    controller: pageController,
+                    scrollDirection: Axis.vertical,
+                    children: <Widget>[
+                        CardScreen(),
+                        AboutScreen(),
+                    ],
                 ),
             ),
         );
+    }
+}
+
+class CardScreen extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+        return Container(
+            padding: const EdgeInsets.all(8),
+            child: Flex(
+                direction: Axis.vertical,
+                children: <Widget>[
+                    Expanded(
+                        child: Flex(
+                            direction: Axis.horizontal,
+                            children: <Widget>[
+                                Expanded(
+                                    child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        child: Card(
+                                            child: Center(
+                                                child: Text('Card 1'),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                                Expanded(
+                                    child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        child: Card(
+                                            child: Center(
+                                                child: Text('Card 2'),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
+                    Expanded(
+                        child: Flex(
+                            direction: Axis.horizontal,
+                            children: <Widget>[
+                                Expanded(
+                                    child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        child: Card(
+                                            child: Center(
+                                                child: Text('Card 3'),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                                Expanded(
+                                    child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        child: Card(
+                                            child: Center(
+                                                child: Text('Card 4'),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
+                ],
+            ),
+        );
+    }
+}
+
+class AboutScreen extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+        return Container();
     }
 }
