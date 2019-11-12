@@ -20,7 +20,6 @@ class _MainScreenState extends State<MainScreen> {
             ),
             body: SafeArea(
                 child: PageView(
-                    
                     controller: pageController,
                     scrollDirection: Axis.vertical,
                     children: <Widget>[
@@ -34,6 +33,7 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class CardScreen extends StatelessWidget {
+    CardScreen({Key key}) : super(key: key);
     @override
     Widget build(BuildContext context) {
         return Container(
@@ -86,8 +86,10 @@ class CardScreen extends StatelessWidget {
 }
 
 class AboutScreen extends StatelessWidget {
+    AboutScreen({Key key}) : super(key: key);
     @override
     Widget build(BuildContext context) {
         return Container();
+        
     }
 }
