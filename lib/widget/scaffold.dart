@@ -27,24 +27,27 @@ class _AppScaffoldState extends State<AppScaffold> {
     Widget build(BuildContext context) {
         themeData = widget.themeData;
         themeData ??= Theme.of(context);
-        return Scaffold(
-            appBar: widget.appBar,
-            body: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.bottomLeft,
-                        end: Alignment(1.0, 0.5),
-                        colors: <Color>[
-                            TinyColor(themeData.backgroundColor)
-                              .darken(5)
-                              .color,
-                            themeData.backgroundColor,
-                        ],
+        return Theme(
+            data: themeData,
+            child: Scaffold(
+                appBar: widget.appBar,
+                body: Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment(1.0, 0.5),
+                            colors: <Color>[
+                                TinyColor(themeData.backgroundColor)
+                                  .darken(5)
+                                  .color,
+                                themeData.backgroundColor,
+                            ],
+                        ),
                     ),
+                    child: widget.body,
                 ),
-                child: widget.body,
+                floatingActionButton: widget.floatingActionButton,
             ),
-            floatingActionButton: widget.floatingActionButton,
         );
     }
 }
