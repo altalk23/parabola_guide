@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parabola_guide/old/widget/scaffold.dart';
+import 'package:parabola_guide/widget/scaffold.dart';
 
 class Screen1 extends StatefulWidget {
     @override
@@ -11,8 +11,14 @@ class _Screen1State extends State<Screen1> {
     @override
     Widget build(BuildContext context) {
         return AppScaffold(
-            appBar: AppBar(
-                title: Text('Screen 1'),
+            appBar: PreferredSize(
+                preferredSize: Size.fromHeight(100.0),
+                child: Hero(
+                    tag: "screen1",
+                    child: AppBar(
+                        title: Text('Screen 1'),
+                    ),
+                ),
             ),
         );
     }

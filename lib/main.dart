@@ -10,31 +10,51 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              backgroundColor: Color(0xFFEEFFFF),
-              primarySwatch: MaterialColor(
-                  0xFF55CC77,
-                  <int, Color>{
-                      50: TinyColor(Color(0xFF55CC77)).lighten(40).color,
-                      100: TinyColor(Color(0xFF55CC77)).lighten(36).color,
-                      200: TinyColor(Color(0xFF55CC77)).lighten(27).color,
-                      300: TinyColor(Color(0xFF55CC77)).lighten(18).color,
-                      400: TinyColor(Color(0xFF55CC77)).lighten(9).color,
-                      500: Color(0xFF55CC77),
-                      600: TinyColor(Color(0xFF55CC77)).darken(9).color,
-                      700: TinyColor(Color(0xFF55CC77)).darken(18).color,
-                      800: TinyColor(Color(0xFF55CC77)).darken(27).color,
-                      900: TinyColor(Color(0xFF55CC77)).darken(36).color,
-                  },
-              ),
-              accentColor: Color(0xFF7733AA),
-              cardTheme: CardTheme(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                          Radius.circular(8),
-                      ),
-                  ),
-              ),
-              fontFamily: 'Comfortaa'
+                backgroundColor: Color(0xFFEEFFFF),
+                primarySwatch: MaterialColor(
+                    0xFF55CC77,
+                    <int, Color>{
+                        50: TinyColor(Color(0xFF55CC77))
+                          .lighten(40)
+                          .color,
+                        100: TinyColor(Color(0xFF55CC77))
+                          .lighten(36)
+                          .color,
+                        200: TinyColor(Color(0xFF55CC77))
+                          .lighten(27)
+                          .color,
+                        300: TinyColor(Color(0xFF55CC77))
+                          .lighten(18)
+                          .color,
+                        400: TinyColor(Color(0xFF55CC77))
+                          .lighten(9)
+                          .color,
+                        500: Color(0xFF55CC77),
+                        600: TinyColor(Color(0xFF55CC77))
+                          .darken(9)
+                          .color,
+                        700: TinyColor(Color(0xFF55CC77))
+                          .darken(18)
+                          .color,
+                        800: TinyColor(Color(0xFF55CC77))
+                          .darken(27)
+                          .color,
+                        900: TinyColor(Color(0xFF55CC77))
+                          .darken(36)
+                          .color,
+                    },
+                ),
+                accentColor: Color(0xFF7733AA),
+                cardTheme: CardTheme(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                        ),
+                    ),
+                ),
+                fontFamily: 'Comfortaa',
+                highlightColor: Color(0x11777777),
+                splashColor: Color(0x22999999),
             ),
             home: MainScreen(),
         );

@@ -10,7 +10,7 @@ class AppScaffold extends StatefulWidget {
         this.themeData,
     }) : super(key: key);
     
-    final AppBar appBar;
+    final PreferredSizeWidget appBar;
     final Widget body;
     final FloatingActionButton floatingActionButton;
     final ThemeData themeData;

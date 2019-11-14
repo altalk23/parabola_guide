@@ -34,6 +34,7 @@ class _MainScreenState extends State<MainScreen> {
 
 class CardScreen extends StatelessWidget {
     CardScreen({Key key}) : super(key: key);
+    
     @override
     Widget build(BuildContext context) {
         return Container(
@@ -46,6 +47,7 @@ class CardScreen extends StatelessWidget {
                             direction: Axis.horizontal,
                             children: <Widget>[
                                 AppCard(
+                                    tag: "screen1",
                                     onTap: () {
                                         Navigator.push(
                                             context,
@@ -58,6 +60,7 @@ class CardScreen extends StatelessWidget {
                                     color: Color(0xFFFF88AA),
                                 ),
                                 AppCard(
+                                    tag: "screen2",
                                     child: Text('Card 2'),
                                     color: Color(0xFF88AAFF),
                                 ),
@@ -69,10 +72,12 @@ class CardScreen extends StatelessWidget {
                             direction: Axis.horizontal,
                             children: <Widget>[
                                 AppCard(
+                                    tag: "screen3",
                                     child: Text('Card 3'),
                                     color: Color(0xFFEE77FF),
                                 ),
                                 AppCard(
+                                    tag: "screen4",
                                     child: Text('Card 4'),
                                     color: Color(0xFFEEFF77),
                                 ),
@@ -87,9 +92,9 @@ class CardScreen extends StatelessWidget {
 
 class AboutScreen extends StatelessWidget {
     AboutScreen({Key key}) : super(key: key);
+    
     @override
     Widget build(BuildContext context) {
         return Container();
-        
     }
 }
