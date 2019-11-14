@@ -14,15 +14,16 @@ class _Screen1State extends State<Screen1> {
     Widget build(BuildContext context) {
         return AppScaffold(
             appBar: PreferredSize(
-                preferredSize: Size.fromHeight(100.0),
+                preferredSize: Size.fromHeight(56.0),
                 child: Hero(
                     tag: "screen1",
                     child: AppBar(
                         title: Text('Screen 1'),
+                        backgroundColor: Color(0xFFFF88AA),
                     ),
                 ),
             ),
-            themeData: AppThemeData(
+            themeData: mainTheme(
                 primarySwatch: MaterialColor(
                     0xFFFF88AA,
                     <int, Color>{
@@ -56,8 +57,7 @@ class _Screen1State extends State<Screen1> {
                           .color,
                     },
                 ),
-                backgroundColor: Color(0xFFFF88AA),
-            ).toThemeData(),
+            ),
         );
     }
 }
