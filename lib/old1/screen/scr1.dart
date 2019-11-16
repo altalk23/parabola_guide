@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/main.dart';
-import 'package:parabola_guide/widget/scaffold.dart';
+import 'package:parabola_guide/old1/widget/scaffold.dart';
 import 'package:tinycolor/tinycolor.dart';
 
 class Screen1 extends StatefulWidget {
