@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parabola_guide/behavior/start.dart';
 
 class MainScreen extends StatefulWidget {
     @override
@@ -24,13 +25,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                 ],
             ),
-            floatingActionButton: FloatingActionButton(
-                onPressed: () {},
-                child: Icon(
-                    Icons.edit,
-                ),
-                
-            ),
+            floatingActionButton: startFloatingActionButton(),
         );
     }
 }
