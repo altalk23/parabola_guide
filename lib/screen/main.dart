@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
+import 'package:parabola_guide/style.dart';
 
 class MainScreen extends StatefulWidget {
     @override
@@ -25,21 +26,14 @@ class _MainScreenState extends State<MainScreen> {
                                             padding: EdgeInsets.all(32),
                                             child: Text(
                                                 "=→",
-                                                style: TextStyle(
-                                                  fontSize: 72,
-                                                  fontFamily: "Latin Modern Roman 10",
-                                                  fontWeight: FontWeight.w800
-                                                ),
+                                                style: iconTextStyle(context),
                                             ),
                                         ),
                                         onPressed: () {},
                                     ),
                                     Text(
                                         "From equation",
-                                        style: TextStyle(
-                                          fontSize: 28,
-                                          fontFamily: "Latin Modern Roman 10",
-                                        ),
+                                        style: mediumTextStyle(context),
                                     ),
                                 ],
                             ),
@@ -52,21 +46,14 @@ class _MainScreenState extends State<MainScreen> {
                                             padding: EdgeInsets.all(32),
                                             child: Text(
                                                 "→=",
-                                                style: TextStyle(
-                                                  fontSize: 72,
-                                                  fontFamily: "Latin Modern Roman 10",
-                                                  fontWeight: FontWeight.w800
-                                                ),
+                                                style: iconTextStyle(context),
                                             ),
                                         ),
                                         onPressed: () {},
                                     ),
                                     Text(
                                         "To equation",
-                                        style: TextStyle(
-                                            fontSize: 28,
-                                            fontFamily: "Latin Modern Roman 10",
-                                        ),
+                                        style: mediumTextStyle(context),
                                     ),
                                 ],
                             ),
