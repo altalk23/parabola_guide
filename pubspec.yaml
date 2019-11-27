@@ -47,6 +47,12 @@ flutter:
         -   family: CustomIcons
             fonts:
                 -   asset: assets/fonts/CustomIcons.ttf
+        -   family: Latin Modern Roman 10
+            fonts:
+                -   asset: assets/fonts/LatinModernRoman10Italic.otf
+                    weight: 400
+                -   asset: assets/fonts/LatinModernRoman10BoldItalic.otf
+                    weight: 700
         -   family: Comfortaa
             fonts:
                 -   asset: assets/fonts/Comfortaa-Light.ttf
