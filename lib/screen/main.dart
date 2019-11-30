@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
+import 'package:parabola_guide/screen/to_equation.dart';
 import 'package:parabola_guide/style.dart';
 
 class MainScreen extends StatefulWidget {
@@ -49,7 +50,14 @@ class _MainScreenState extends State<MainScreen> {
                                                 style: iconTextStyle(context),
                                             ),
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) => ToEquationScreen(),
+                                                ),
+                                            );
+                                        },
                                     ),
                                     Text(
                                         "To equation",
