@@ -28,3 +28,11 @@ TextStyle mediumTextStyle(context) {
         fontSize: 28,
     );
 }
+
+TextStyle smallIconTextStyle(context) {
+    return TextStyle(
+      fontSize: 44,
+      fontWeight: FontWeight.w800,
+      color: Colors.white,
+    );
+}
