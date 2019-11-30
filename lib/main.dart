@@ -44,6 +44,7 @@ ThemeData mainTheme({
         accentColor: accentColor,
         fontFamily: fontFamily,
         cardTheme: cardTheme,
+        canvasColor: Colors.transparent,
     );
 }
 

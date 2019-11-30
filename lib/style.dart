@@ -36,3 +36,10 @@ TextStyle smallIconTextStyle(context) {
       color: Colors.white,
     );
 }
+
+TextStyle largeTextStyle(context) {
+    return TextStyle(
+        fontSize: 36,
+        fontWeight: FontWeight.w800,
+    );
+}

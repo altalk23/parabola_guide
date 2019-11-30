@@ -5,8 +5,12 @@ BoxDecoration scaffoldDecoration(BuildContext context) {
     return BoxDecoration(
         gradient: LinearGradient(
             colors: <Color>[
-                Theme.of(context).backgroundColor,
-                Theme.of(context).primaryColorLight,
+                Theme
+                  .of(context)
+                  .backgroundColor,
+                Theme
+                  .of(context)
+                  .primaryColorLight,
             ],
             begin: Alignment(0.6, -0.8),
             end: Alignment(-0.6, 0.8),
@@ -30,7 +34,10 @@ ShapeDecoration materialButtonDecoration(BuildContext context) {
 
 ShapeDecoration cardDecoration(BuildContext context) {
     return ShapeDecoration(
-        shape: Theme.of(context).cardTheme.shape,
+        shape: Theme
+          .of(context)
+          .cardTheme
+          .shape,
         gradient: LinearGradient(
             colors: <Color>[
                 swatch().shade500.withAlpha(85),
@@ -53,11 +60,11 @@ ShapeDecoration floatingActionButtonDecoration(BuildContext context) {
             begin: Alignment(-0.4, 0.9),
             end: Alignment(0.4, -0.9),
         ),
-        shadows: <BoxShadow> [
+        shadows: <BoxShadow>[
             BoxShadow(
                 blurRadius: 10,
                 spreadRadius: 3,
-                color: Color(0x44000000)
+                color: Color(0x44000000),
             ),
         ],
     );
@@ -65,6 +72,14 @@ ShapeDecoration floatingActionButtonDecoration(BuildContext context) {
 
 BoxDecoration modalBottomSheetDecoration(BuildContext context) {
     return BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        boxShadow: [
+            BoxShadow(
+                blurRadius: 10,
+                spreadRadius: 3,
+                color: Color(0x44000000),
+            ),
+        ],
         gradient: LinearGradient(
             colors: <Color>[
                 swatch().shade100,
