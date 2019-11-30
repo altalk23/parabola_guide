@@ -16,81 +16,78 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
         showModalBottomSheet(
             context: context,
             builder: (BuildContext bc) {
-                return Theme(
-                    data: Theme.of(context).copyWith(canvasColor: Colors.black54),
-                  child: Container(
-                      margin: EdgeInsets.all(16),
-                      padding: EdgeInsets.all(8),
-                      decoration: modalBottomSheetDecoration(context),
-                      child: Wrap(
-                          children: <Widget>[
-                              ListTile(
-                                  leading: Text(
-                                      "V",
-                                      style: largeTextStyle(context),
-                                  ),
-                                  title: Text(
-                                      "Vertex",
-                                      style: mediumTextStyle(context),
-                                  ),
-                                  onTap: () {
-                                      setState(() {
-                                          data.add("Vertex");
-                                      });
-                                      Navigator.pop(context);
-                                  },
-                              ),
-                              ListTile(
-                                  leading: Text(
-                                      "X",
-                                      style: largeTextStyle(context),
-                                  ),
-                                  title: Text(
-                                      "Root",
-                                      style: mediumTextStyle(context),
-                                  ),
-                                  onTap: () {
-                                      setState(() {
-                                          data.add("Root");
-                                      });
-                                      Navigator.pop(context);
-                                  },
-                              ),
-                              ListTile(
-                                  leading: Text(
-                                      "P",
-                                      style: largeTextStyle(context),
-                                  ),
-                                  title: Text(
-                                      "Point",
-                                      style: mediumTextStyle(context),
-                                  ),
-                                  onTap: () {
-                                      setState(() {
-                                          data.add("Point");
-                                      });
-                                      Navigator.pop(context);
-                                  },
-                              ),
-                              ListTile(
-                                  leading: Text(
-                                      "A",
-                                      style: largeTextStyle(context),
-                                  ),
-                                  title: Text(
-                                      "Constant",
-                                      style: mediumTextStyle(context),
-                                  ),
-                                  onTap: () {
-                                      setState(() {
-                                          data.add("Constant");
-                                      });
-                                      Navigator.pop(context);
-                                  },
-                              ),
-                          ],
-                      ),
-                  ),
+                return Container(
+                    margin: EdgeInsets.all(16),
+                    padding: EdgeInsets.all(8),
+                    decoration: modalBottomSheetDecoration(context),
+                    child: Wrap(
+                        children: <Widget>[
+                            ListTile(
+                                leading: Text(
+                                    "V",
+                                    style: largeTextStyle(context),
+                                ),
+                                title: Text(
+                                    "Vertex",
+                                    style: mediumTextStyle(context),
+                                ),
+                                onTap: () {
+                                    setState(() {
+                                        data.add("Vertex");
+                                    });
+                                    Navigator.pop(context);
+                                },
+                            ),
+                            ListTile(
+                                leading: Text(
+                                    "X",
+                                    style: largeTextStyle(context),
+                                ),
+                                title: Text(
+                                    "Root",
+                                    style: mediumTextStyle(context),
+                                ),
+                                onTap: () {
+                                    setState(() {
+                                        data.add("Root");
+                                    });
+                                    Navigator.pop(context);
+                                },
+                            ),
+                            ListTile(
+                                leading: Text(
+                                    "P",
+                                    style: largeTextStyle(context),
+                                ),
+                                title: Text(
+                                    "Point",
+                                    style: mediumTextStyle(context),
+                                ),
+                                onTap: () {
+                                    setState(() {
+                                        data.add("Point");
+                                    });
+                                    Navigator.pop(context);
+                                },
+                            ),
+                            ListTile(
+                                leading: Text(
+                                    "A",
+                                    style: largeTextStyle(context),
+                                ),
+                                title: Text(
+                                    "Constant",
+                                    style: mediumTextStyle(context),
+                                ),
+                                onTap: () {
+                                    setState(() {
+                                        data.add("Constant");
+                                    });
+                                    Navigator.pop(context);
+                                },
+                            ),
+                        ],
+                    ),
                 );
             },
         );
