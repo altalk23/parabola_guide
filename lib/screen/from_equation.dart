@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
 import 'package:parabola_guide/style.dart';
 import 'dart:math';
+import 'dart:core';
 
-List<ToEquationData> toEquationData = [
-    ToEquationData("Lorem ipsum", 5.6, 2.4),
+List<FromEquationData> fromEquationData = [
+    FromEquationData("Lorem ipsum", 5.6, 2.4, 7.9),
 ];
 
-class ToEquationScreen extends StatefulWidget {
+class FromEquationScreen extends StatefulWidget {
     @override
-    _ToEquationScreenState createState() => _ToEquationScreenState();
+    _FromEquationScreenState createState() => _FromEquationScreenState();
 }
 
-class _ToEquationScreenState extends State<ToEquationScreen> {
+class _FromEquationScreenState extends State<FromEquationScreen> {
     Random random = Random();
     
     
@@ -28,10 +29,11 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
             ),
             onTap: () {
                 setState(() {
-                    toEquationData.add(ToEquationData(
+                    fromEquationData.add(FromEquationData(
                         name,
                         (random.nextDouble() - 0.5) * 20,
-                        name == "Constant" ? double.nan : (random.nextDouble() - 0.5) * 20,
+                        (random.nextDouble() - 0.5) * 20,
+                        name == "Line" ? double.nan : (random.nextDouble() - 0.5) * 20,
                     ));
                 });
                 Navigator.pop(context);
@@ -49,10 +51,8 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                     decoration: modalBottomSheetDecoration(context),
                     child: Wrap(
                         children: <Widget>[
-                            options(context, "V", "Vertex"),
-                            options(context, "X", "Root"),
-                            options(context, "P", "Point"),
-                            options(context, "A", "Constant"),
+                            options(context, "L", "Line"),
+                            options(context, "Q", "Quadratic"),
                         ],
                     ),
                 );
@@ -69,22 +69,22 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                     child: ListView.builder(
                         itemBuilder: (context, index) {
                             return Card(
-                                child: toEquationData[index].name != "Constant" ? Container(
+                                child: fromEquationData[index].name != "Line" ? Container(
                                     decoration: cardDecoration(context),
                                     padding: EdgeInsets.all(16.0),
                                     child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                             Text(
-                                                toEquationData[index].name,
+                                                fromEquationData[index].name,
                                                 style: mediumTextStyle(context),
                                             ),
                                             Text(
-                                                "(" +
-                                                  toEquationData[index].x.toString() +
-                                                  ", " +
-                                                  toEquationData[index].y.toString() +
-                                                  ")",
+                                                fromEquationData[index].a.toString() +
+                                                  "x²" + (fromEquationData[index].b < 0 ? " - " : " + ") +
+                                                  fromEquationData[index].b.abs().toString() +
+                                                  "x" + (fromEquationData[index].c < 0 ? " - " : " + ") +
+                                                  fromEquationData[index].c.abs().toString(),
                                                 style: mediumTextStyle(context),
                                             ),
                                         ],
@@ -96,11 +96,13 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                             Text(
-                                                toEquationData[index].name,
+                                                fromEquationData[index].name,
                                                 style: mediumTextStyle(context),
                                             ),
                                             Text(
-                                                toEquationData[index].x.toString(),
+                                                fromEquationData[index].a.toString() +
+                                                  "x" + (fromEquationData[index].b < 0 ? " - " : " + ") +
+                                                  fromEquationData[index].b.abs().toString(),
                                                 style: mediumTextStyle(context),
                                             ),
                                         ],
@@ -108,7 +110,7 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                                 ),
                             );
                         },
-                        itemCount: toEquationData.length,
+                        itemCount: fromEquationData.length,
                     ),
                 ),
             ),
@@ -132,10 +134,11 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
     }
 }
 
-class ToEquationData {
+class FromEquationData {
     final String name;
-    final double x;
-    final double y;
+    final double a;
+    final double b;
+    final double c;
     
-    ToEquationData(this.name, this.x, this.y);
+    FromEquationData(this.name, this.a, this.b, this.c);
 }
