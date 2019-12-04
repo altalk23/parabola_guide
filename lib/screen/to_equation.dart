@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
 import 'package:parabola_guide/style.dart';
+import 'dart:math';
 
 class ToEquationScreen extends StatefulWidget {
     @override
@@ -8,9 +9,33 @@ class ToEquationScreen extends StatefulWidget {
 }
 
 class _ToEquationScreenState extends State<ToEquationScreen> {
-    List<String> data = [
-        'Lorem ipsum',
+    Random random = Random();
+    List<ToEquationData> data = [
+        ToEquationData("Lorem ipsum", 5.6, 2.4),
     ];
+    
+    ListTile options(BuildContext context, String icon, String name) {
+        return ListTile(
+            leading: Text(
+                icon,
+                style: largeTextStyle(context),
+            ),
+            title: Text(
+                name,
+                style: mediumTextStyle(context),
+            ),
+            onTap: () {
+                setState(() {
+                    data.add(ToEquationData(
+                        name,
+                        (random.nextDouble() - 0.5) * 20,
+                        name == "Constant" ? double.nan : (random.nextDouble() - 0.5) * 20,
+                    ));
+                });
+                Navigator.pop(context);
+            },
+        );
+    }
     
     void modalSheet(BuildContext context) {
         showModalBottomSheet(
@@ -22,70 +47,10 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                     decoration: modalBottomSheetDecoration(context),
                     child: Wrap(
                         children: <Widget>[
-                            ListTile(
-                                leading: Text(
-                                    "V",
-                                    style: largeTextStyle(context),
-                                ),
-                                title: Text(
-                                    "Vertex",
-                                    style: mediumTextStyle(context),
-                                ),
-                                onTap: () {
-                                    setState(() {
-                                        data.add("Vertex");
-                                    });
-                                    Navigator.pop(context);
-                                },
-                            ),
-                            ListTile(
-                                leading: Text(
-                                    "X",
-                                    style: largeTextStyle(context),
-                                ),
-                                title: Text(
-                                    "Root",
-                                    style: mediumTextStyle(context),
-                                ),
-                                onTap: () {
-                                    setState(() {
-                                        data.add("Root");
-                                    });
-                                    Navigator.pop(context);
-                                },
-                            ),
-                            ListTile(
-                                leading: Text(
-                                    "P",
-                                    style: largeTextStyle(context),
-                                ),
-                                title: Text(
-                                    "Point",
-                                    style: mediumTextStyle(context),
-                                ),
-                                onTap: () {
-                                    setState(() {
-                                        data.add("Point");
-                                    });
-                                    Navigator.pop(context);
-                                },
-                            ),
-                            ListTile(
-                                leading: Text(
-                                    "A",
-                                    style: largeTextStyle(context),
-                                ),
-                                title: Text(
-                                    "Constant",
-                                    style: mediumTextStyle(context),
-                                ),
-                                onTap: () {
-                                    setState(() {
-                                        data.add("Constant");
-                                    });
-                                    Navigator.pop(context);
-                                },
-                            ),
+                            options(context, "V", "Vertex"),
+                            options(context, "X", "Root"),
+                            options(context, "P", "Point"),
+                            options(context, "A", "Constant"),
                         ],
                     ),
                 );
@@ -102,12 +67,41 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                     child: ListView.builder(
                         itemBuilder: (context, index) {
                             return Card(
-                                child: Container(
+                                child: data[index].name != "Constant" ? Container(
                                     decoration: cardDecoration(context),
                                     padding: EdgeInsets.all(16.0),
-                                    child: Text(
-                                        data[index],
-                                        style: mediumTextStyle(context),
+                                    child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                            Text(
+                                                data[index].name,
+                                                style: mediumTextStyle(context),
+                                            ),
+                                            Text(
+                                                "(" +
+                                                  data[index].x.toString() +
+                                                  ", " +
+                                                  data[index].y.toString() +
+                                                  ")",
+                                                style: mediumTextStyle(context),
+                                            ),
+                                        ],
+                                    ),
+                                ) : Container(
+                                    decoration: cardDecoration(context),
+                                    padding: EdgeInsets.all(16.0),
+                                    child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                            Text(
+                                                data[index].name,
+                                                style: mediumTextStyle(context),
+                                            ),
+                                            Text(
+                                                data[index].x.toString(),
+                                                style: mediumTextStyle(context),
+                                            ),
+                                        ],
                                     ),
                                 ),
                             );
@@ -136,3 +130,10 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
     }
 }
 
+class ToEquationData {
+    final String name;
+    final double x;
+    final double y;
+    
+    ToEquationData(this.name, this.x, this.y);
+}
