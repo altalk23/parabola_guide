@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
-import 'package:parabola_guide/graph.dart';
 import 'package:parabola_guide/screen/from_equation.dart';
-import 'package:parabola_guide/screen/from_equation_screen.dart';
 import 'package:parabola_guide/screen/to_equation.dart';
 import 'package:parabola_guide/style.dart';
 
@@ -65,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
-                                                    builder: (context) => ToEquationScreen(),
+                                                    builder: (context) => ToEquation(),
                                                 ),
                                             );
                                         },
