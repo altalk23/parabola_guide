@@ -4,7 +4,7 @@ import 'package:parabola_guide/screen/from_equation_solution.dart';
 
 class FromEquation extends StatelessWidget {
     final PageController controller = PageController(
-        initialPage: 1,
+        initialPage: 0,
     );
     @override
     Widget build(BuildContext context) {

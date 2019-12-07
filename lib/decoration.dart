@@ -90,3 +90,20 @@ BoxDecoration modalBottomSheetDecoration(BuildContext context) {
         ),
     );
 }
+
+BoxDecoration canvasDecoration(BuildContext context) {
+    return BoxDecoration(
+        borderRadius: BorderRadius.all(
+            Radius.circular(32),
+        ),
+        gradient: LinearGradient(
+            colors: <Color>[
+                Color(0xFFF2F2F2),
+                Color(0xFFFFFFFF)
+            ],
+            begin: Alignment(-0.4, 0.9),
+            end: Alignment(0.4, -0.9),
+        ),
+        
+    );
+}

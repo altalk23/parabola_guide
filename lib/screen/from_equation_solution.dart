@@ -11,32 +11,13 @@ class FromEquationSolver extends StatelessWidget {
                 decoration: scaffoldDecoration(context),
                 child: ListView(
                     children: <Widget>[
-                        Placeholder(
-                            fallbackWidth: 500,
-                            fallbackHeight: 200,
-                        ),
-                        Placeholder(
-                            fallbackWidth: 500,
-                            fallbackHeight: 200,
-                        ),
-                        Placeholder(
-                            fallbackWidth: 500,
-                            fallbackHeight: 200,
-                        ),
-                        Placeholder(
-                            fallbackWidth: 500,
-                            fallbackHeight: 200,
-                        ),
                         Container(
                             margin: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                                border: Border.all(width: 3),
-                            
-                            
-                            ),
-                            child: AspectRatio(
-                                aspectRatio: 1,
-                                child: Container(
+                            decoration: canvasDecoration(context),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.all(Radius.circular(32)),
+                                child: AspectRatio(
+                                    aspectRatio: 1,
                                     child: CustomPaint(
                                         painter: FunctionPainter([
                                             Equation(1, 0, 0),

@@ -38,24 +38,33 @@ class FunctionPainter extends CustomPainter {
     void paint(Canvas canvas, Size size) {
         var paint = Paint();
         paint.style = PaintingStyle.stroke;
-        paint.strokeWidth = 5.0;
+        paint.strokeWidth = 2;
         
-        var path = Path();
+        Path path = Path();
         Point p;
-        bool flag = true;
+
+        paint.color = Color(0xFF888888);
+        p = align(Point(0, hs), size);
+        path.moveTo(p.x, p.y);
+        p = align(Point(0, he), size);
+        path.lineTo(p.x, p.y);
+        p = align(Point(ws, 0), size);
+        path.moveTo(p.x, p.y);
+        p = align(Point(we, 0), size);
+        path.lineTo(p.x, p.y);
+        canvas.drawPath(path, paint);
+
+        paint.strokeWidth = 4;
         _equation.forEach((eq) {
-            paint.color = Color.fromARGB(255, random.nextInt(127), random.nextInt(127), random.nextInt(127));
+            path = Path();
+            paint.color = Color.fromARGB(255, random.nextInt(192), random.nextInt(192), random.nextInt(192));
             for (double d = ws; d <= we; d += (we - ws) / density) {
                 p = align(Point(d, function(eq, d)), size);
-                if (flag) {
-                    if (p.y >= 0 && p.y <= size.height) flag = false;
-                    path.moveTo(p.x, p.y);
-                }
-                path.lineTo(p.x, p.y);
+                if (d == ws) path.moveTo(p.x, p.y);
+                else path.lineTo(p.x, p.y);
             }
-            path.moveTo(0, 0);
+            canvas.drawPath(path, paint);
         });
-        canvas.drawPath(path, paint);
     }
     
     @override
