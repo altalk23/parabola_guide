@@ -31,7 +31,7 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                     toEquationData.add(ToEquationData(
                         name,
                         (random.nextDouble() - 0.5) * 20,
-                        name == "Constant" ? double.nan : (random.nextDouble() - 0.5) * 20,
+                        name == "Constant" || name == "Root" ? double.nan : (random.nextDouble() - 0.5) * 20,
                     ));
                 });
                 Navigator.pop(context);
