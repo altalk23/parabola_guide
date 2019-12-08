@@ -36586,7 +36586,7 @@ K.fE(this.c,!1).lJ(null)},
 $S:0}
 E.MF.prototype={
 $0:function(){var u=$.f7(),t=this.b,s=this.a.d,r=s.jk()
-s=t==="Constant"?0/0:(s.jk()-0.5)*20
+s=t==="Constant"||t==="Root"?0/0:(s.jk()-0.5)*20
 u.push(new E.la(t,(r-0.5)*20,s))},
 $S:0}
 E.ME.prototype={
@@ -36594,7 +36594,7 @@ $1:function(a){var u=null,t=this.b,s=Z.Tm(t),r=this.a
 return M.aU(u,T.RU(H.b([r.h6(0,t,"V","Vertex"),r.h6(0,t,"X","Root"),r.h6(0,t,"P","Point"),r.h6(0,t,"A","Constant")],[N.ab])),u,u,s,u,new V.W(16,16,16,16),new V.W(8,8,8,8),u)}}
 E.MC.prototype={
 $2:function(a,b){var u,t=null,s=[N.ab]
-if($.f7()[b].a!=="Constant"){u=Z.ml(a)
+if($.f7()[b].c!==0/0){u=Z.ml(a)
 u=M.aU(t,T.eb(H.b([L.bg($.f7()[b].a,A.aI(t,t,t,t,t,t,t,t,t,t,t,28,t,t,t,t,!0,t,t,t,t,t,t),t),L.bg("("+C.e.h($.f7()[b].b)+", "+C.e.h($.f7()[b].c)+")",A.aI(t,t,t,t,t,t,t,t,t,t,t,28,t,t,t,t,!0,t,t,t,t,t,t),t)],s),C.ba,C.au,C.av),t,t,u,t,t,new V.W(16,16,16,16),t)
 s=u}else{u=Z.ml(a)
 u=M.aU(t,T.eb(H.b([L.bg($.f7()[b].a,A.aI(t,t,t,t,t,t,t,t,t,t,t,28,t,t,t,t,!0,t,t,t,t,t,t),t),L.bg(C.e.h($.f7()[b].b),A.aI(t,t,t,t,t,t,t,t,t,t,t,28,t,t,t,t,!0,t,t,t,t,t,t),t)],s),C.ba,C.au,C.av),t,t,u,t,t,new V.W(16,16,16,16),t)
