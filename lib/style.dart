@@ -43,3 +43,16 @@ TextStyle largeTextStyle(context) {
         fontWeight: FontWeight.w800,
     );
 }
+
+TextStyle smallTextStyle(context) {
+    return TextStyle(
+        fontSize: 20,
+    );
+}
+
+TextStyle mediumListStyle(context) {
+    return TextStyle(
+        fontSize: 28,
+        fontWeight: FontWeight.w800,
+    );
+}

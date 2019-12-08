@@ -104,6 +104,12 @@ BoxDecoration canvasDecoration(BuildContext context) {
             begin: Alignment(-0.4, 0.9),
             end: Alignment(0.4, -0.9),
         ),
-        
+        boxShadow: <BoxShadow>[
+            BoxShadow(
+                blurRadius: 10,
+                spreadRadius: 3,
+                color: Color(0x44000000),
+            ),
+        ],
     );
 }
