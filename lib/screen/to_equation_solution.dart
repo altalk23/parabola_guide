@@ -7,6 +7,25 @@ import 'package:parabola_guide/style.dart';
 
 class ToEquationSolver extends StatelessWidget {
     
+    Container canvas(BuildContext context) {
+        return Container(
+            margin: EdgeInsets.all(16),
+            decoration: canvasDecoration(context),
+            child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(32)),
+                child: AspectRatio(
+                    aspectRatio: 1,
+                    child: CustomPaint(
+                        painter: FunctionPainter([
+                            Equation(0.4, 0, -2),
+                            Equation(0, 1, 1),
+                        ]),
+                    ),
+                ),
+            ),
+        );
+    }
+    
     Card expandingCard(String title, String text, BuildContext context) {
         return Card(
             child: Container(
@@ -43,24 +62,15 @@ class ToEquationSolver extends StatelessWidget {
         return Scaffold(
             body: Container(
                 decoration: scaffoldDecoration(context),
-                child: ListView(
+                child: MediaQuery
+                  .of(context)
+                  .size
+                  .width < MediaQuery
+                  .of(context)
+                  .size
+                  .height ? ListView(
                     children: <Widget>[
-                        Container(
-                            margin: EdgeInsets.all(16),
-                            decoration: canvasDecoration(context),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.all(Radius.circular(32)),
-                                child: AspectRatio(
-                                    aspectRatio: 1,
-                                    child: CustomPaint(
-                                        painter: FunctionPainter([
-                                            Equation(0.4, 0, -2),
-                                            Equation(0, 1, 1),
-                                        ]),
-                                    ),
-                                ),
-                            ),
-                        ),
+                        canvas(context),
                         expandingCard(
                             dummyTitleToEquation[0],
                             dummyTextToEquation[0],
@@ -70,6 +80,33 @@ class ToEquationSolver extends StatelessWidget {
                             dummyTitleToEquation[1],
                             dummyTextToEquation[1],
                             context,
+                        ),
+                    ],
+                ) : Row(
+                    children: <Widget>[
+                        canvas(context),
+                        Container(
+                            width: MediaQuery
+                              .of(context)
+                              .size
+                              .width - MediaQuery
+                              .of(context)
+                              .size
+                              .height,
+                            child: ListView(
+                                children: <Widget>[
+                                    expandingCard(
+                                        dummyTitleToEquation[0],
+                                        dummyTextToEquation[0],
+                                        context,
+                                    ),
+                                    expandingCard(
+                                        dummyTitleToEquation[1],
+                                        dummyTextToEquation[1],
+                                        context,
+                                    ),
+                                ],
+                            ),
                         ),
                     ],
                 ),
