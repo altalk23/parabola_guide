@@ -69,7 +69,7 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                     child: ListView.builder(
                         itemBuilder: (context, index) {
                             return Card(
-                                child: toEquationData[index].y.toString() == "NaN" ? Container(
+                                child: toEquationData[index].y.toString() != "NaN" ? Container(
                                     decoration: cardDecoration(context),
                                     padding: EdgeInsets.all(16.0),
                                     child: Column(
