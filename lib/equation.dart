@@ -21,8 +21,8 @@ class Equation {
     final double b;
     final double c;
     final EquationType type;
-    
-    
+
+    Equation(this.a, this.b, this.c) : this.type = EquationType.standard;
     Equation.fromStandard(this.a, this.b, this.c) : this.type = EquationType.standard;
     
     Equation.fromVertex(this.a, double h, double k)

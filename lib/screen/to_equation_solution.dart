@@ -7,8 +7,13 @@ import 'package:parabola_guide/text_style.dart';
 
 import '../equation.dart';
 
+
 class ToEquationSolver extends StatelessWidget {
-    Equation e = Equation.fromStandard(0.4, 0, -2);
+    List<Equation> ads = [
+        Equation(0, 1, 1),
+        Equation(0.4, 0, -2),
+    ];
+    
     Container canvas(BuildContext context) {
         return Container(
             margin: EdgeInsets.all(16),
@@ -18,7 +23,7 @@ class ToEquationSolver extends StatelessWidget {
                 child: AspectRatio(
                     aspectRatio: 1,
                     child: CustomPaint(
-                        painter: FunctionPainter([Equation.fromStandard(0, 1, 1),]),
+                        painter: FunctionPainter()..addEquation(ads),
                     ),
                 ),
             ),

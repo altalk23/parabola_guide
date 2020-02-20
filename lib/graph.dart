@@ -1,14 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:parabola_guide/screen/from_equation_screen.dart';
 
 import 'equation.dart';
 
+
 class FunctionPainter extends CustomPainter {
     Random random = Random();
-    final List<Equation> equation;
-    List<Equation> _equation = List<Equation>();
+    List<Equation> equation = List<Equation>();
     double ws = -10,
       we = 10,
       hs = -10,
@@ -26,13 +25,13 @@ class FunctionPainter extends CustomPainter {
     
     double function(Equation eq, double d) => eq.a * d * d + eq.b * d + eq.c;
     
-    FunctionPainter(this.equation) {
-        equation.forEach((eq) {
-            if (eq.c.isNaN) {
-                _equation.add(Equation.fromStandard(0, eq.a, eq.b));
-            } else {
-                _equation.add(Equation.fromStandard(eq.a, eq.b, eq.c));
-            }
+    FunctionPainter();
+    
+    void addEquation(List<Equation> eq) {
+        equation.add(Equation.fromStandard(2, 2, 2));
+        
+        eq.forEach((e) {
+            equation.add(e);
         });
     }
     
@@ -44,7 +43,7 @@ class FunctionPainter extends CustomPainter {
         
         Path path = Path();
         Point p;
-
+        
         paint.color = Color(0xFF888888);
         p = align(Point(0, hs), size);
         path.moveTo(p.x, p.y);
@@ -55,15 +54,17 @@ class FunctionPainter extends CustomPainter {
         p = align(Point(we, 0), size);
         path.lineTo(p.x, p.y);
         canvas.drawPath(path, paint);
-
+        
         paint.strokeWidth = 4;
-        _equation.forEach((eq) {
+        equation.forEach((eq) {
             path = Path();
             paint.color = Color.fromARGB(255, random.nextInt(192), random.nextInt(192), random.nextInt(192));
             for (double d = ws; d <= we; d += (we - ws) / density) {
                 p = align(Point(d, function(eq, d)), size);
-                if (d == ws) path.moveTo(p.x, p.y);
-                else path.lineTo(p.x, p.y);
+                if (d == ws)
+                    path.moveTo(p.x, p.y);
+                else
+                    path.lineTo(p.x, p.y);
             }
             canvas.drawPath(path, paint);
         });
