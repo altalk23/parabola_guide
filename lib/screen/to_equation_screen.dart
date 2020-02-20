@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
-import 'package:parabola_guide/style.dart';
+import 'package:parabola_guide/text_style.dart';
 import 'dart:math';
 
 List<ToEquationData> toEquationData = [
@@ -31,7 +31,7 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                     toEquationData.add(ToEquationData(
                         name,
                         (random.nextDouble() - 0.5) * 20,
-                        name == "Constant" || name == "Root" ? double.nan : (random.nextDouble() - 0.5) * 20,
+                        name == "Constant" || name == "Root" ? double.infinity : (random.nextDouble() - 0.5) * 20,
                     ));
                 });
                 Navigator.pop(context);
@@ -63,13 +63,16 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
+            backgroundColor: Theme
+              .of(context)
+              .backgroundColor,
             body: Container(
                 decoration: scaffoldDecoration(context),
                 child: Center(
                     child: ListView.builder(
                         itemBuilder: (context, index) {
                             return Card(
-                                child: toEquationData[index].y.toString() != "NaN" ? Container(
+                                child: Container(
                                     decoration: cardDecoration(context),
                                     padding: EdgeInsets.all(16.0),
                                     child: Column(
@@ -77,31 +80,17 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                                         children: <Widget>[
                                             Text(
                                                 toEquationData[index].name,
-                                                style: mediumTextStyle(context),
+                                                style: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .subtitle,
                                             ),
                                             Text(
-                                                "(" +
-                                                  toEquationData[index].x.toString() +
-                                                  ", " +
-                                                  toEquationData[index].y.toString() +
-                                                  ")",
-                                                style: mediumTextStyle(context),
-                                            ),
-                                        ],
-                                    ),
-                                ) : Container(
-                                    decoration: cardDecoration(context),
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                            Text(
-                                                toEquationData[index].name,
-                                                style: mediumTextStyle(context),
-                                            ),
-                                            Text(
-                                                toEquationData[index].x.toString(),
-                                                style: mediumTextStyle(context),
+                                                toEquationData[index].toString(),
+                                                style: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .body1,
                                             ),
                                         ],
                                     ),
@@ -112,18 +101,19 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                     ),
                 ),
             ),
-            floatingActionButton: Container(
-                alignment: Alignment(-0.1, -0.9),
-                decoration: floatingActionButtonDecoration(context),
-                width: 82,
-                height: 82,
-                child: InkWell(
-                    onTap: () {
-                        modalSheet(context);
-                    },
-                    child: Text(
-                        "+",
-                        style: smallIconTextStyle(context),
+            floatingActionButton: FloatingActionButton(
+                elevation: 8,
+                onPressed: () {
+                    modalSheet(context);
+                },
+                child: Container(
+                    alignment: Alignment(0, 1),
+                    child: Image(
+                      width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.2,
+                      image: AssetImage('assets/images/add.png')
                     ),
                 ),
             ),
@@ -138,4 +128,10 @@ class ToEquationData {
     final double y;
     
     ToEquationData(this.name, this.x, this.y);
+
+    @override
+    String toString() {
+        if (y == double.infinity) return "$x";
+        else return "($x, $y)";
+    }
 }

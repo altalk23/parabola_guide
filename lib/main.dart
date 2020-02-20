@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/screen/main.dart';
-import 'package:parabola_guide/style.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -9,42 +9,53 @@ class MyApp extends StatelessWidget {
     Widget build(BuildContext context) {
         return MaterialApp(
             debugShowCheckedModeBanner: false,
-            theme: mainTheme(),
+            theme: ThemeData(
+                backgroundColor: Color(0xfffff8e1),
+                primaryColor: Color(0xffff5716),
+                primaryColorLight: Color(0xffff8a48),
+                primaryColorDark: Color(0xffc41d00),
+                accentColor: Color(0xff307489),
+                cardTheme: CardTheme(
+                    margin: EdgeInsets.all(12),
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                        ),
+                    ),
+                ),
+                canvasColor: Colors.transparent,
+                fontFamily: 'Nunito',
+                textTheme: TextTheme(
+                    body1: TextStyle(
+                        fontSize: 20,
+                    ),
+                    subhead: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w400,
+                    ),
+                    title: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                    ),
+                    body2: TextStyle(
+                        fontFamily: 'Latin Modern Roman 10',
+                        fontSize: 22,
+                        fontWeight: FontWeight.w400,
+                    ),
+                    display2: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
+                    ),
+                    subtitle: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w400,
+                    ),
+                    
+                ),
+            ),
             home: MainScreen(),
         );
     }
 }
-
-ThemeData mainTheme({
-    Color backgroundColor,
-    MaterialColor primarySwatch,
-    Color accentColor,
-    Color highlightColor,
-    Color splashColor,
-    String fontFamily,
-    CardTheme cardTheme,
-}) {
-    backgroundColor ??= Color(0xffe5def8);
-    primarySwatch ??= swatch();
-    accentColor ??= Color(0xff9808DB);
-    cardTheme ??= CardTheme(
-        margin: EdgeInsets.all(12),
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-                Radius.circular(12),
-            ),
-        ),
-    );
-    fontFamily ??= 'Latin Modern Roman 10';
-    
-    return ThemeData(
-        backgroundColor: backgroundColor,
-        primarySwatch: primarySwatch,
-        accentColor: accentColor,
-        fontFamily: fontFamily,
-        cardTheme: cardTheme,
-        canvasColor: Colors.transparent,
-    );
-}
-

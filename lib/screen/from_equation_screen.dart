@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
-import 'package:parabola_guide/style.dart';
+import 'package:parabola_guide/text_style.dart';
 import 'dart:math';
 import 'dart:core';
 
+import '../equation.dart';
+
+
 List<FromEquationData> fromEquationData = [
-    FromEquationData("Lorem ipsum", Equation(5.6, 2.4, 7.9)),
+    FromEquationData("Lorem ipsum", Equation.fromStandard(5.6, 2.4, 7.9)),
 ];
 
 class FromEquationScreen extends StatefulWidget {
@@ -29,11 +32,35 @@ class _FromEquationScreenState extends State<FromEquationScreen> {
             ),
             onTap: () {
                 setState(() {
-                    fromEquationData.add(FromEquationData(name, Equation(
-                        (random.nextDouble() - 0.5) * 20,
-                        (random.nextDouble() - 0.5) * 20,
-                        name == "Line" ? double.nan : (random.nextDouble() - 0.5) * 20,
-                    )));
+                    switch (name) {
+                        case 'Line':
+                            fromEquationData.add(FromEquationData(name, Equation.fromStandard(
+                                0, (random.nextDouble() - 0.5) * 20,
+                                (random.nextDouble() - 0.5) * 20,
+                            )));
+                            break;
+                        case 'Standard Form':
+                            fromEquationData.add(FromEquationData(name, Equation.fromStandard(
+                                (random.nextDouble() - 0.5) * 20,
+                                (random.nextDouble() - 0.5) * 20,
+                                (random.nextDouble() - 0.5) * 20,
+                            )));
+                            break;
+                        case 'Vertex Form':
+                            fromEquationData.add(FromEquationData(name, Equation.fromVertex(
+                                (random.nextDouble() - 0.5) * 20,
+                                (random.nextDouble() - 0.5) * 20,
+                                (random.nextDouble() - 0.5) * 20,
+                            )));
+                            break;
+                        case 'Factored Form':
+                            fromEquationData.add(FromEquationData(name, Equation.fromFactored(
+                                (random.nextDouble() - 0.5) * 20,
+                                (random.nextDouble() - 0.5) * 20,
+                                (random.nextDouble() - 0.5) * 20,
+                            )));
+                            break;
+                    }
                 });
                 Navigator.pop(context);
             },
@@ -51,7 +78,9 @@ class _FromEquationScreenState extends State<FromEquationScreen> {
                     child: Wrap(
                         children: <Widget>[
                             options(context, "L", "Line"),
-                            options(context, "Q", "Quadratic"),
+                            options(context, "A", "Standard Form"),
+                            options(context, "V", "Vertex Form"),
+                            options(context, "X", "Factored Form"),
                         ],
                     ),
                 );
@@ -62,13 +91,16 @@ class _FromEquationScreenState extends State<FromEquationScreen> {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
+            backgroundColor: Theme
+              .of(context)
+              .backgroundColor,
             body: Container(
                 decoration: scaffoldDecoration(context),
                 child: Center(
                     child: ListView.builder(
                         itemBuilder: (context, index) {
                             return Card(
-                                child: fromEquationData[index].name != "Line" ? Container(
+                                child: Container(
                                     decoration: cardDecoration(context),
                                     padding: EdgeInsets.all(16.0),
                                     child: Column(
@@ -76,33 +108,17 @@ class _FromEquationScreenState extends State<FromEquationScreen> {
                                         children: <Widget>[
                                             Text(
                                                 fromEquationData[index].name,
-                                                style: mediumTextStyle(context),
+                                                style: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .subtitle,
                                             ),
                                             Text(
-                                                fromEquationData[index].equation.a.toString() +
-                                                  "x²" + (fromEquationData[index].equation.b < 0 ? " - " : " + ") +
-                                                  fromEquationData[index].equation.b.abs().toString() +
-                                                  "x" + (fromEquationData[index].equation.c < 0 ? " - " : " + ") +
-                                                  fromEquationData[index].equation.c.abs().toString(),
-                                                style: mediumTextStyle(context),
-                                            ),
-                                        ],
-                                    ),
-                                ) : Container(
-                                    decoration: cardDecoration(context),
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                            Text(
-                                                fromEquationData[index].name,
-                                                style: mediumTextStyle(context),
-                                            ),
-                                            Text(
-                                                fromEquationData[index].equation.a.toString() +
-                                                  "x" + (fromEquationData[index].equation.b < 0 ? " - " : " + ") +
-                                                  fromEquationData[index].equation.b.abs().toString(),
-                                                style: mediumTextStyle(context),
+                                                fromEquationData[index].equation.toString(),
+                                                style: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .body1,
                                             ),
                                         ],
                                     ),
@@ -113,18 +129,19 @@ class _FromEquationScreenState extends State<FromEquationScreen> {
                     ),
                 ),
             ),
-            floatingActionButton: Container(
-                alignment: Alignment(-0.1, -0.9),
-                decoration: floatingActionButtonDecoration(context),
-                width: 82,
-                height: 82,
-                child: InkWell(
-                    onTap: () {
-                        modalSheet(context);
-                    },
-                    child: Text(
-                        "+",
-                        style: smallIconTextStyle(context),
+            floatingActionButton: FloatingActionButton(
+                elevation: 8,
+                onPressed: () {
+                    modalSheet(context);
+                },
+                child: Container(
+                    alignment: Alignment(0, 1),
+                    child: Image(
+                      width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.2,
+                      image: AssetImage('assets/images/add.png')
                     ),
                 ),
             ),
@@ -133,13 +150,6 @@ class _FromEquationScreenState extends State<FromEquationScreen> {
     }
 }
 
-class Equation {
-    final double a;
-    final double b;
-    final double c;
-    
-    Equation(this.a, this.b, this.c);
-}
 
 class FromEquationData {
     final String name;

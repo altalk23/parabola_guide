@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
 import 'package:parabola_guide/screen/from_equation.dart';
 import 'package:parabola_guide/screen/to_equation.dart';
-import 'package:parabola_guide/style.dart';
+
 
 class MainScreen extends StatefulWidget {
     @override
@@ -13,69 +13,79 @@ class _MainScreenState extends State<MainScreen> {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-            body: Container(
-                decoration: scaffoldDecoration(context),
-                child: Center(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                            Column(
-                                children: <Widget>[
-                                    RawMaterialButton(
-                                        shape: CircleBorder(),
-                                        child: Container(
-                                            decoration: materialButtonDecoration(context),
-                                            padding: EdgeInsets.all(32),
-                                            child: Text(
-                                                "=→",
-                                                style: iconTextStyle(context),
-                                            ),
+            backgroundColor: Theme
+              .of(context)
+              .backgroundColor,
+            body: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                        Column(
+                            children: <Widget>[
+                                RawMaterialButton(
+                                    shape: CircleBorder(),
+                                    child: Container(
+                                        decoration: materialButtonDecoration(context),
+                                        child: Image(
+                                          width: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .width * 0.5,
+                                          image: AssetImage('assets/images/from_equation.png')
                                         ),
-                                        onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) => FromEquation(),
-                                                    
-                                                ),
-                                            );
-                                        },
                                     ),
-                                    Text(
-                                        "From equation",
-                                        style: mediumTextStyle(context),
-                                    ),
-                                ],
-                            ),
-                            Column(
-                                children: <Widget>[
-                                    RawMaterialButton(
-                                        shape: CircleBorder(),
-                                        child: Container(
-                                            decoration: materialButtonDecoration(context),
-                                            padding: EdgeInsets.all(32),
-                                            child: Text(
-                                                "→=",
-                                                style: iconTextStyle(context),
+                                    onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => FromEquation(),
+                                            
                                             ),
+                                        );
+                                    },
+                                ),
+                                Text(
+                                    "From equation",
+                                    style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .subhead,
+                                ),
+                            ],
+                        ),
+                        Column(
+                            children: <Widget>[
+                                RawMaterialButton(
+                                    shape: CircleBorder(),
+                                    child: Container(
+                                        decoration: materialButtonDecoration(context),
+                                        child: Image(
+                                          width: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .width * 0.5,
+                                          image: AssetImage('assets/images/to_equation.png')
                                         ),
-                                        onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) => ToEquation(),
-                                                ),
-                                            );
-                                        },
                                     ),
-                                    Text(
-                                        "To equation",
-                                        style: mediumTextStyle(context),
-                                    ),
-                                ],
-                            ),
-                        ],
-                    ),
+                                    onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => ToEquation(),
+                                            ),
+                                        );
+                                    },
+                                ),
+                                Text(
+                                    "To equation",
+                                    style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .subhead,
+                                ),
+                            ],
+                        ),
+                    ],
                 ),
             ),
         );

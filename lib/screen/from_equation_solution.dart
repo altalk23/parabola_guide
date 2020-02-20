@@ -3,7 +3,9 @@ import 'package:parabola_guide/decoration.dart';
 import 'package:parabola_guide/dummy.dart';
 import 'package:parabola_guide/graph.dart';
 import 'package:parabola_guide/screen/from_equation_screen.dart';
-import 'package:parabola_guide/style.dart';
+import 'package:parabola_guide/text_style.dart';
+
+import '../equation.dart';
 
 class FromEquationSolver extends StatelessWidget {
     
@@ -17,8 +19,8 @@ class FromEquationSolver extends StatelessWidget {
                     aspectRatio: 1,
                     child: CustomPaint(
                         painter: FunctionPainter([
-                            Equation(1, 0, 0),
-                            Equation(0, 1, 0),
+                            Equation.fromStandard(1, 0, 0),
+                            Equation.fromStandard(0, 1, 0),
                         ]),
                     ),
                 ),

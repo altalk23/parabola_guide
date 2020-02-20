@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/screen/from_equation_screen.dart';
 
+import 'equation.dart';
+
 class FunctionPainter extends CustomPainter {
     Random random = Random();
     final List<Equation> equation;
@@ -27,9 +29,9 @@ class FunctionPainter extends CustomPainter {
     FunctionPainter(this.equation) {
         equation.forEach((eq) {
             if (eq.c.isNaN) {
-                _equation.add(Equation(0, eq.a, eq.b));
+                _equation.add(Equation.fromStandard(0, eq.a, eq.b));
             } else {
-                _equation.add(Equation(eq.a, eq.b, eq.c));
+                _equation.add(Equation.fromStandard(eq.a, eq.b, eq.c));
             }
         });
     }

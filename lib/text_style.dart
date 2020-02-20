@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-MaterialColor swatch() => MaterialColor(
+/*MaterialColor swatch() => MaterialColor(
     0xfff451b0,
     <int, Color>{
         50: Color(0xfffce3f2),
@@ -14,7 +14,7 @@ MaterialColor swatch() => MaterialColor(
         800: Color(0xffb40073),
         900: Color(0xff8b006a),
     },
-);
+);*/
 
 TextStyle iconTextStyle(context) {
     return TextStyle(
