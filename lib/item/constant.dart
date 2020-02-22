@@ -1,3 +1,4 @@
+import 'package:parabola_guide/item/item_type.dart';
 import 'package:parabola_guide/item/item.dart';
 
 class Constant extends Item {
@@ -7,6 +8,6 @@ class Constant extends Item {
     
     @override
     String toString() {
-        return '$value [$type]';
+        return '$value';
     }
 }

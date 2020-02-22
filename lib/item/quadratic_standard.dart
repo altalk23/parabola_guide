@@ -1,5 +1,5 @@
 import 'package:parabola_guide/item/equation.dart';
-import 'package:parabola_guide/item/item.dart';
+import 'package:parabola_guide/item/item_type.dart';
 
 class QuadraticStandard extends Equation {
     final double a;

@@ -1,4 +1,5 @@
 import 'package:parabola_guide/item/equation.dart';
+import 'package:parabola_guide/item/item_type.dart';
 import 'package:parabola_guide/item/item.dart';
 
 class Line extends Equation {
