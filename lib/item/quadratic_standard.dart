@@ -7,4 +7,8 @@ class QuadraticStandard extends Equation {
     final double c;
     
     QuadraticStandard(this.a, this.b, this.c) : super.type(ItemType.quadraticStandard, [a, b, c]);
+
+    double f(double x) {
+        return a * x * x + b * x + c;
+    }
 }

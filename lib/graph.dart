@@ -1,10 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-
-import 'equation.dart';
-
-List<Equation> painterEquations = List<Equation>();
+import 'package:parabola_guide/item/equation.dart';
+import 'package:parabola_guide/item/point.dart';
+import 'package:parabola_guide/item/item_type.dart';
+import 'package:parabola_guide/screen/input.dart';
+import 'package:tuple/tuple.dart';
 
 class FunctionPainter extends CustomPainter {
     Random random = Random();
@@ -13,13 +14,13 @@ class FunctionPainter extends CustomPainter {
       hs = -10,
       he = 10;
     double density = 100;
-    
-    Point align(Point point, Size size) {
+
+    Tuple2<double, double> align(Tuple2 tuple, Size size) {
         double wst = (size.width) / (we - ws);
         double hst = (size.height) / (he - hs);
-        return Point(
-            point.x * wst + (wst * -ws),
-            size.height - ((point.y) * hst + (hst * -hs)),
+        return Tuple2(
+            tuple.item1 * wst + (wst * -ws),
+            size.height - (tuple.item2 * hst + (hst * -hs)),
         );
     }
     
@@ -27,37 +28,88 @@ class FunctionPainter extends CustomPainter {
     
     @override
     void paint(Canvas canvas, Size size) {
-        var paint = Paint();
+        Paint paint = Paint();
         paint.style = PaintingStyle.stroke;
         paint.strokeWidth = 2;
         
         Path path = Path();
-        Point p;
+        Tuple2<double, double> tuple;
         
         paint.color = Color(0xFF888888);
-        p = align(Point(0, hs), size);
-        path.moveTo(p.x, p.y);
-        p = align(Point(0, he), size);
-        path.lineTo(p.x, p.y);
-        p = align(Point(ws, 0), size);
-        path.moveTo(p.x, p.y);
-        p = align(Point(we, 0), size);
-        path.lineTo(p.x, p.y);
+        tuple = align(Tuple2(0, hs), size);
+        path.moveTo(tuple.item1, tuple.item2);
+        tuple = align(Tuple2(0, he), size);
+        path.lineTo(tuple.item1, tuple.item2);
+        tuple = align(Tuple2(ws, 0), size);
+        path.moveTo(tuple.item1, tuple.item2);
+        tuple = align(Tuple2(we, 0), size);
+        path.lineTo(tuple.item1, tuple.item2);
         canvas.drawPath(path, paint);
         
         paint.strokeWidth = 4;
-        painterEquations.forEach((eq) {
-            path = Path();
-            paint.color = Color.fromARGB(255, random.nextInt(192), random.nextInt(192), random.nextInt(192));
-            for (double d = ws; d <= we; d += (we - ws) / density) {
-                p = align(Point(d, eq.f(d)), size);
-                if (d == ws)
-                    path.moveTo(p.x, p.y);
-                else
-                    path.lineTo(p.x, p.y);
+        itemData.forEach((item) {
+            switch (item.type) {
+                case ItemType.constant:
+                    break;
+                case ItemType.point:
+                    paintPoint(item, canvas, size);
+                    break;
+                case ItemType.vertex:
+                    paintPoint(item, canvas, size);
+                    break;
+                case ItemType.root:
+                    paintPoint(item, canvas, size);
+                    break;
+                case ItemType.line:
+                    paintEquation(item, canvas, size);
+                    break;
+                case ItemType.quadraticFactored:
+                    paintEquation(item, canvas, size);
+                    break;
+                case ItemType.quadraticStandard:
+                    paintEquation(item, canvas, size);
+                    break;
+                case ItemType.quadraticVertex:
+                    paintEquation(item, canvas, size);
+                    break;
+                case ItemType.equation:
+                    paintEquation(item, canvas, size);
+                    break;
+                case ItemType.item:
+                    break;
             }
-            canvas.drawPath(path, paint);
         });
+    }
+    
+    void paintEquation(Equation eq, Canvas canvas, Size size) {
+        Paint paint = Paint();
+        paint.style = PaintingStyle.stroke;
+        paint.strokeWidth = 2;
+        paint.color = Color.fromARGB(255, random.nextInt(192), random.nextInt(192), random.nextInt(192));
+        
+        Path path = Path();
+        Tuple2<double, double> tuple;
+        
+        for (double d = ws; d <= we; d += (we - ws) / density) {
+            tuple = align(Tuple2(d, eq.f(d)), size);
+            if (d == ws)
+                path.moveTo(tuple.item1, tuple.item2);
+            else
+                path.lineTo(tuple.item1, tuple.item2);
+        }
+        canvas.drawPath(path, paint);
+    }
+    
+    void paintPoint(Point p, Canvas canvas, Size size) {
+        Paint paint = Paint();
+        paint.style = PaintingStyle.stroke;
+        paint.strokeWidth = 2;
+        paint.color = Color.fromARGB(255, random.nextInt(192), random.nextInt(192), random.nextInt(192));
+    
+        Path path = Path();
+        path.moveTo(p.x, p.y);
+        path.lineTo(p.x, p.y);
+        canvas.drawPath(path, paint);
     }
     
     @override

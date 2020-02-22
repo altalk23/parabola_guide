@@ -4,9 +4,6 @@ import 'package:parabola_guide/dummy.dart';
 import 'package:parabola_guide/graph.dart';
 import 'package:parabola_guide/text_style.dart';
 
-import '../equation.dart';
-
-
 class SolverScreen extends StatelessWidget {
     Container canvas(BuildContext context) {
         return Container(
@@ -26,38 +23,82 @@ class SolverScreen extends StatelessWidget {
     
     Card expandingCard(String title, String text, BuildContext context) {
         return Card(
-            child: Container(
-                decoration: cardDecoration(context),
-                padding: EdgeInsets.all(8),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    child: ExpansionTile(
-                        title: Text(
-                            title,
-                            style: mediumListStyle(context),
+            child: ExpansionTile(
+                title: Text(
+                    title,
+                ),
+                children: [
+                    Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                                text,
+                                style: smallTextStyle(context),
+                                textAlign: TextAlign.left,
+                            ),
                         ),
-                        children: [
-                            Align(
-                                alignment: Alignment.topLeft,
-                                child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                        text,
-                                        style: smallTextStyle(context),
-                                        textAlign: TextAlign.left,
-                                    ),
-                                ),
+                    ),
+                ],
+            ),
+        );
+    }
+    
+    Widget portrait(BuildContext context) {
+        return ListView(
+            children: <Widget>[
+                canvas(context),
+                expandingCard(
+                    dummyTitleToEquation[0],
+                    dummyTextToEquation[0],
+                    context,
+                ),
+                expandingCard(
+                    dummyTitleToEquation[1],
+                    dummyTextToEquation[1],
+                    context,
+                ),
+            ],
+        );
+    }
+    
+    Widget landsacpe(BuildContext context) {
+        return Row(
+            children: <Widget>[
+                canvas(context),
+                Container(
+                    width: MediaQuery
+                      .of(context)
+                      .size
+                      .width - MediaQuery
+                      .of(context)
+                      .size
+                      .height,
+                    child: ListView(
+                        children: <Widget>[
+                            expandingCard(
+                                dummyTitleToEquation[0],
+                                dummyTextToEquation[0],
+                                context,
+                            ),
+                            expandingCard(
+                                dummyTitleToEquation[1],
+                                dummyTextToEquation[1],
+                                context,
                             ),
                         ],
                     ),
                 ),
-            ),
+            ],
         );
     }
     
     @override
     Widget build(BuildContext context) {
         return Scaffold(
+            backgroundColor: Theme
+              .of(context)
+              .backgroundColor,
             body: Container(
                 decoration: scaffoldDecoration(context),
                 child: MediaQuery
@@ -66,48 +107,7 @@ class SolverScreen extends StatelessWidget {
                   .width < MediaQuery
                   .of(context)
                   .size
-                  .height ? ListView(
-                    children: <Widget>[
-                        canvas(context),
-                        expandingCard(
-                            dummyTitleToEquation[0],
-                            dummyTextToEquation[0],
-                            context,
-                        ),
-                        expandingCard(
-                            dummyTitleToEquation[1],
-                            dummyTextToEquation[1],
-                            context,
-                        ),
-                    ],
-                ) : Row(
-                    children: <Widget>[
-                        canvas(context),
-                        Container(
-                            width: MediaQuery
-                              .of(context)
-                              .size
-                              .width - MediaQuery
-                              .of(context)
-                              .size
-                              .height,
-                            child: ListView(
-                                children: <Widget>[
-                                    expandingCard(
-                                        dummyTitleToEquation[0],
-                                        dummyTextToEquation[0],
-                                        context,
-                                    ),
-                                    expandingCard(
-                                        dummyTitleToEquation[1],
-                                        dummyTextToEquation[1],
-                                        context,
-                                    ),
-                                ],
-                            ),
-                        ),
-                    ],
-                ),
+                  .height ? portrait(context) : landsacpe(context),
             ),
         );
     }

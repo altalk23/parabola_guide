@@ -19,4 +19,8 @@ class QuadraticVertex extends Equation {
         buffer.write(k.constantString());
         return buffer.toString();
     }
+
+    double f(double x) {
+        return a * x * x + b * x + c;
+    }
 }

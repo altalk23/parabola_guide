@@ -14,9 +14,12 @@ class Equation extends Item {
         StringBuffer buffer = StringBuffer();
         values.asMap().forEach((key, value) {
             if (value != 0) {
-                if (key == 0) buffer.write(value.coefficentString().addXDegree(values.length-key-1));
-                else if (key == values.length-1)buffer.write(value.constantString().addXDegree(0));
-                else buffer.write(value.continueCoefficentString().addXDegree(values.length-key-1));
+                if (key == 0)
+                    buffer.write(value.coefficentString().addXDegree(values.length - key - 1));
+                else if (key == values.length - 1)
+                    buffer.write(value.constantString().addXDegree(0));
+                else
+                    buffer.write(value.continueCoefficentString().addXDegree(values.length - key - 1));
             }
         });
         return buffer.toString();
@@ -26,7 +29,7 @@ class Equation extends Item {
         double ans = 0;
         int exp = values.length;
         values.forEach((element) {
-            ans += pow(element, --exp);
+            ans += element * pow(x, --exp);
         });
         return ans;
     }
