@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
 import 'package:parabola_guide/dummy.dart';
 import 'package:parabola_guide/graph.dart';
-import 'package:parabola_guide/screen/from_equation_screen.dart';
 import 'package:parabola_guide/text_style.dart';
 
 import '../equation.dart';

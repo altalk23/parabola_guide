@@ -16,7 +16,41 @@ class _InputScreenState extends State<InputScreen> {
     List<TextEditingController> controller = List<TextEditingController>(3);
     
     void add(BuildContext context) {
-    
+        switch (selectedType) {
+            case ItemType.constant:
+            // TODO: Handle this case.
+                break;
+            case ItemType.point:
+            // TODO: Handle this case.
+                break;
+            case ItemType.vertex:
+            // TODO: Handle this case.
+                break;
+            case ItemType.root:
+            // TODO: Handle this case.
+                break;
+            case ItemType.line:
+            // TODO: Handle this case.
+                break;
+            case ItemType.quadraticFactored:
+            // TODO: Handle this case.
+                break;
+            case ItemType.quadraticStandard:
+            // TODO: Handle this case.
+                break;
+            case ItemType.quadraticVertex:
+            // TODO: Handle this case.
+                break;
+            case ItemType.equation:
+            // TODO: Handle this case.
+                break;
+            case ItemType.item:
+            // TODO: Handle this case.
+                break;
+        }
+        controller.forEach((element) {
+            element.text = '';
+        });
     }
     
     Widget options(BuildContext context) {
@@ -32,23 +66,27 @@ class _InputScreenState extends State<InputScreen> {
               DropdownMenuItem<ItemType>(
                   child: Text(e.name()),
                   value: e,
-              )),
+              )).toList(),
         
         );
     }
     
     Widget input(BuildContext context) {
-        int inputCount = typeName.findKey(selectedType).dataCount();
-        List<Widget> inputs;
+        int inputCount = selectedType.dataCount();
+        List<Widget> inputs = List<Widget>();
         if (inputCount >= 3) inputs.add(TextField(controller: controller[2]));
         if (inputCount >= 2) inputs.add(TextField(controller: controller[1]));
         if (inputCount >= 1) inputs.add(TextField(controller: controller[0]));
-        return Column(children: inputs,);
+        if (inputCount <= 0)
+            return Container();
+        else
+            return Column(children: inputs,);
     }
     
     Widget items(BuildContext context) {
         return Expanded(
             child: ListView.builder(
+                itemCount: itemData.length,
                 itemBuilder: (BuildContext context, int index) {
                     return item(context, itemData[index].type.name(), itemData[index].toString(), index);
                 },
@@ -86,6 +124,7 @@ class _InputScreenState extends State<InputScreen> {
               .backgroundColor,
             body: Column(
                 children: <Widget>[
+                    SizedBox(height: 70,),
                     options(context),
                     input(context),
                     items(context),
