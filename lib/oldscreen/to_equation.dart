@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:parabola_guide/screen/to_equation_screen.dart';
-import 'package:parabola_guide/screen/to_equation_solution.dart';
+import 'package:parabola_guide/screen/input.dart';
+import 'package:parabola_guide/screen/solver.dart';
 
 class ToEquation extends StatelessWidget {
     final PageController controller = PageController(
