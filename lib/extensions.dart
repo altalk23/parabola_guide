@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 const String superscripts = '⁰¹²³⁴⁵⁶⁷⁸⁹';
 
 extension AddDegree on String {
@@ -47,5 +49,14 @@ extension Factoring on double {
     String constantString() {
         if (this == 0) return '';
         return (this < 0 ? ' - ' : ' + ') + '${this.abs()}';
+    }
+}
+
+HashMap<int, int> a;
+
+
+extension FindKey<T, V> on HashMap<T, V> {
+    T findKey(V value) {
+        this.keys.firstWhere((element) => this[element] == value);
     }
 }

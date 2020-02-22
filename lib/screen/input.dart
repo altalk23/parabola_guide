@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/item/item.dart';
 import 'package:parabola_guide/item/item_type.dart';
-import 'package:tuple/tuple.dart';
+import 'package:parabola_guide/extensions.dart';
 
 List<Item> itemData = [];
 
@@ -12,22 +12,33 @@ class InputScreen extends StatefulWidget {
 
 class _InputScreenState extends State<InputScreen> {
     int selected = -1;
-    String selectedType = '';
+    ItemType selectedType = ItemType.item;
     List<TextEditingController> controller = List<TextEditingController>(3);
     
+    void add(BuildContext context) {
+    
+    }
+    
     Widget options(BuildContext context) {
-        return DropdownButton<String>(
-            value: selectedType,
-            onChanged: (String value) {  },
-            items: ([''] + typeName.values.toList()).map((e) => DropdownMenuItem<String>(
-                child: Text(e),
-                value: e,
-            )),
-            
+        return DropdownButton<ItemType>(
+            value: null,
+            hint: Text(selectedType.name()),
+            onChanged: (ItemType value) {
+                setState(() {
+                    selectedType = value;
+                });
+            },
+            items: (ItemType.values).map((e) =>
+              DropdownMenuItem<ItemType>(
+                  child: Text(e.name()),
+                  value: e,
+              )),
+        
         );
     }
+    
     Widget input(BuildContext context) {
-        int inputCount = typeName.keys.firstWhere((element) => typeName[element] == selectedType).dataCount();
+        int inputCount = typeName.findKey(selectedType).dataCount();
         List<Widget> inputs;
         if (inputCount >= 3) inputs.add(TextField(controller: controller[2]));
         if (inputCount >= 2) inputs.add(TextField(controller: controller[1]));
@@ -48,7 +59,9 @@ class _InputScreenState extends State<InputScreen> {
     ListTile item(BuildContext context, String title, String subtitle, int index) {
         return ListTile(
             title: Card(
-                color: index == selected ? Theme.of(context).primaryColorLight : null,
+                color: index == selected ? Theme
+                  .of(context)
+                  .primaryColorLight : null,
                 child: Column(
                     children: <Widget>[
                         Text(title),
@@ -77,6 +90,22 @@ class _InputScreenState extends State<InputScreen> {
                     input(context),
                     items(context),
                 ],
+            ),
+            floatingActionButton: FloatingActionButton(
+                elevation: 8,
+                onPressed: () {
+                    add(context);
+                },
+                child: Container(
+                    alignment: Alignment(0, 1),
+                    child: Image(
+                      width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.2,
+                      image: AssetImage('assets/images/add.png')
+                    ),
+                ),
             ),
             floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         );
