@@ -1,7 +1,16 @@
+import 'package:parabola_guide/item/equation.dart';
+
 class Item {
     ItemType type;
+    
     Item() : this.type = ItemType.item;
+    
     Item.type(this.type);
+    
+    @override
+    String toString() {
+        return '[$type]';
+    }
 }
 
 enum ItemType {
@@ -29,3 +38,7 @@ extension on ItemType {
     }
 }
 
+void main() {
+    Equation a = Equation([346, 24, 12123]);
+    print(a);
+}

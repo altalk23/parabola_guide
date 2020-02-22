@@ -4,4 +4,9 @@ class Constant extends Item {
     final double value;
     
     Constant(this.value) : super.type(ItemType.constant);
+    
+    @override
+    String toString() {
+        return '$value [$type]';
+    }
 }
