@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 enum ItemType {
     constant,
     point,
@@ -11,7 +13,20 @@ enum ItemType {
     item,
 }
 
-extension on ItemType {
+HashMap<ItemType, String> typeName = HashMap.from({
+    ItemType.constant: 'Constant',
+    ItemType.point: 'Point',
+    ItemType.vertex: 'Vertex',
+    ItemType.root: 'Root',
+    ItemType.line: 'Line',
+    ItemType.quadraticFactored: 'Factored Form',
+    ItemType.quadraticStandard: 'Standard Form',
+    ItemType.quadraticVertex: 'Vertex Form',
+    ItemType.equation: 'Polynomial',
+    ItemType.item: 'Item'
+});
+
+extension NameAndCount on ItemType {
     int dataCount() {
         int index = ItemType.values.indexOf(this);
         if (index <= 0)
@@ -22,5 +37,7 @@ extension on ItemType {
         else if (index <= 8) return -1;
         return 0;
     }
+    
+    String name() => typeName[this];
 }
 

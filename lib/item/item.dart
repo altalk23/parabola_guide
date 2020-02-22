@@ -13,8 +13,3 @@ class Item {
         return '[$type]';
     }
 }
-
-void main() {
-    Item a = QuadraticVertex(3, -23, 23);
-    print(a);
-}
