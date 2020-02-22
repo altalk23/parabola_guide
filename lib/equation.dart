@@ -1,6 +1,8 @@
 import 'dart:core';
 import 'dart:math';
 
+import 'package:tuple/tuple.dart';
+
 const int precision = 1;
 
 extension on double {
@@ -38,6 +40,10 @@ class Equation {
           this.type = EquationType.factored,
           this.b = -a * x1 - a * x2,
           this.c = a * x1 * x2;
+    
+    Tuple2<double, double> vertex() {
+        return Tuple2(0.5 * b / a, c - a * (0.5 * b / a) * (0.5 * b / a));
+    }
     
     @override
     String toString() {
@@ -93,27 +99,26 @@ class Equation {
     }
     
     String toVertexString() {
-        double h = 0.5 * b / a;
-        double k = c - a * h * h;
+        Tuple2<double, double> v = vertex();
         
         String str = "";
         if (a.roundPrecision(precision) != 0) {
             str += a < 0 ? "-" : "";
             if (a.roundPrecision(precision).abs() != 1) str += a.roundPrecision(precision).abs().toString();
-            if (h.roundPrecision(precision) != 0) str += "(";
+            if (v.item1.roundPrecision(precision) != 0) str += "(";
             str += "x";
-            if (h.roundPrecision(precision) != 0) {
-                str += h < 0 ? " - " : " + ";
-                str += h.roundPrecision(precision).abs().toString();
+            if (v.item1.roundPrecision(precision) != 0) {
+                str += v.item1 < 0 ? " - " : " + ";
+                str += v.item1.roundPrecision(precision).abs().toString();
                 str += ")";
             }
         }
-        if (k.roundPrecision(precision) != 0) {
+        if (v.item2.roundPrecision(precision) != 0) {
             if (this.degree() == 1)
-                str += k < 0 ? "-" : "";
+                str += v.item2 < 0 ? "-" : "";
             else
-                str += k < 0 ? " + " : " - ";
-            str += k.roundPrecision(precision).abs().toString();
+                str += v.item2 < 0 ? " + " : " - ";
+            str += v.item2.roundPrecision(precision).abs().toString();
         }
         return str;
     }

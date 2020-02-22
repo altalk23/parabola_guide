@@ -17,7 +17,10 @@ class FromEquationScreen extends StatefulWidget {
 }
 
 class _FromEquationScreenState extends State<FromEquationScreen> {
-    Random random = Random();
+    TextEditingController aController = TextEditingController();
+    TextEditingController bController = TextEditingController();
+    TextEditingController cController = TextEditingController();
+    int selected = -1;
     
     
     ListTile options(BuildContext context, String icon, String name) {
@@ -32,35 +35,11 @@ class _FromEquationScreenState extends State<FromEquationScreen> {
             ),
             onTap: () {
                 setState(() {
-                    switch (name) {
-                        case 'Line':
-                            fromEquationData.add(FromEquationData(name, Equation.fromStandard(
-                                0, (random.nextDouble() - 0.5) * 20,
-                                (random.nextDouble() - 0.5) * 20,
-                            )));
-                            break;
-                        case 'Standard Form':
-                            fromEquationData.add(FromEquationData(name, Equation.fromStandard(
-                                (random.nextDouble() - 0.5) * 20,
-                                (random.nextDouble() - 0.5) * 20,
-                                (random.nextDouble() - 0.5) * 20,
-                            )));
-                            break;
-                        case 'Vertex Form':
-                            fromEquationData.add(FromEquationData(name, Equation.fromVertex(
-                                (random.nextDouble() - 0.5) * 20,
-                                (random.nextDouble() - 0.5) * 20,
-                                (random.nextDouble() - 0.5) * 20,
-                            )));
-                            break;
-                        case 'Factored Form':
-                            fromEquationData.add(FromEquationData(name, Equation.fromFactored(
-                                (random.nextDouble() - 0.5) * 20,
-                                (random.nextDouble() - 0.5) * 20,
-                                (random.nextDouble() - 0.5) * 20,
-                            )));
-                            break;
-                    }
+                    fromEquationData.add(FromEquationData(name, Equation.fromStandard(0, 0, 0,)));
+                    selected = fromEquationData.length - 1;
+                    aController.text = '';
+                    bController.text = '';
+                    cController.text = '';
                 });
                 Navigator.pop(context);
             },
@@ -77,6 +56,7 @@ class _FromEquationScreenState extends State<FromEquationScreen> {
                     decoration: modalBottomSheetDecoration(context),
                     child: Wrap(
                         children: <Widget>[
+                            options(context, "C", "Constant"),
                             options(context, "L", "Line"),
                             options(context, "A", "Standard Form"),
                             options(context, "V", "Vertex Form"),
@@ -85,6 +65,41 @@ class _FromEquationScreenState extends State<FromEquationScreen> {
                     ),
                 );
             },
+        );
+    }
+
+    bool ifConstant() {
+        return fromEquationData[selected].name == 'Constant';
+    }
+
+    bool ifLine() {
+        return fromEquationData[selected].name == 'Constant';
+    }
+
+    Widget input() {
+        return Row(
+            children: <Widget>[
+                Expanded(
+                    child: TextField(
+                        controller: aController,
+                        onChanged: (String value) {
+                            setState(() {
+                                fromEquationData[selected] = FromEquationData.withX(double.parse(value), toEquationData[selected]);
+                            });
+                        },
+                    ),
+                ),
+                ifconstant() ? Container() : Expanded(
+                    child: TextField(
+                        controller: yController,
+                        onChanged: (String value) {
+                            setState(() {
+                                toEquationData[selected] = ToEquationData.withY(double.parse(value), toEquationData[selected]);
+                            });
+                        },
+                    ),
+                ),
+            ],
         );
     }
     
@@ -157,4 +172,6 @@ class FromEquationData {
     
     
     FromEquationData(this.name, this.equation);
+    
+    FromEquationData.withA(int a, FromEquationData data) : name = a == 0 ? "Line" : data.name,
 }

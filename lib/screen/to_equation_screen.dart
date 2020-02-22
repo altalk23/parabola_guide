@@ -15,11 +15,9 @@ class ToEquationScreen extends StatefulWidget {
 }
 
 class _ToEquationScreenState extends State<ToEquationScreen> {
-    Random random = Random();
     TextEditingController xController = TextEditingController();
     TextEditingController yController = TextEditingController();
     int selected = -1;
-    String selectedName = '';
     
     
     void dispose() {
@@ -44,7 +42,6 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
                     selected = toEquationData.length - 1;
                     xController.text = '';
                     yController.text = '';
-                    
                 });
                 Navigator.pop(context);
             },
