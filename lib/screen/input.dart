@@ -137,6 +137,11 @@ class _InputScreenState extends State<InputScreen> {
                 onTap: () {
                     setState(() {
                         selected = index;
+                        int i = 0;
+                        controller.forEach((element) {
+                            if (i < itemData[index].values.length) element.text = itemData[index].values[i++].toString();
+                        });
+                        
                     });
                 },
             ),

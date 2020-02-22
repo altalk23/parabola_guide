@@ -59,8 +59,8 @@ extension Factoring on double {
 HashMap<int, int> a;
 
 
-extension FindKey<T, V> on HashMap<T, V> {
-    T findKey(V value) {
-        this.keys.firstWhere((element) => this[element] == value);
+extension Enumerate<T> on Iterable<T> {
+    HashMap<int, T> get enumerate {
+        return HashMap<int, T>.fromIterables(List<int>.generate(this.length, (index) => index), this);
     }
 }

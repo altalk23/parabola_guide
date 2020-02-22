@@ -6,7 +6,7 @@ class QuadraticVertex extends Equation {
     final double a;
     final double h;
     final double k;
-    QuadraticVertex(this.a, this.h, this.k) : super.type(ItemType.quadraticVertex, [a * h * h + k,-2 * a * h, a]);
+    QuadraticVertex(this.a, this.h, this.k) : super.type(ItemType.quadraticVertex, [a, h, k]);
     
     get b => -2 * a * h;
     get c => a * h * h + k;

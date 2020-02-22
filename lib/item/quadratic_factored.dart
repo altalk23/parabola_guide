@@ -6,7 +6,7 @@ class QuadraticFactored extends Equation {
     final double a;
     final double x1;
     final double x2;
-    QuadraticFactored(this.a, this.x1, this.x2) : super.type(ItemType.quadraticFactored, [a * x1 * x2, -a * x1 - a * x2, a]);
+    QuadraticFactored(this.a, this.x1, this.x2) : super.type(ItemType.quadraticFactored, [a, x1, x2]);
     
     get b => -a * x1 - a * x2;
     get c => a * x1 * x2;

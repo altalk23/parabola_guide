@@ -5,9 +5,9 @@ class Point extends Item {
     final double x;
     final double y;
     
-    Point(this.x, this.y) : super.type(ItemType.point);
+    Point(this.x, this.y) : super.type(ItemType.point, [x, y]);
     
-    Point.type(ItemType type, this.x, this.y) : super.type(type);
+    Point.type(ItemType type, this.x, this.y) : super.type(type, [x, y]);
     
     @override
     String toString() {
