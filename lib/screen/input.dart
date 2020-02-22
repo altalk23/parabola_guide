@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/item/constant.dart';
+import 'package:parabola_guide/item/equation.dart';
 import 'package:parabola_guide/item/item.dart';
 import 'package:parabola_guide/item/item_type.dart';
 import 'package:parabola_guide/extensions.dart';
@@ -76,13 +77,77 @@ class _InputScreenState extends State<InputScreen> {
                 ));
                 break;
             case ItemType.equation:
+                itemData.add(Equation([]));
                 break;
             case ItemType.item:
+                itemData.add(Item([]));
                 break;
         }
         controller.forEach((element) {
             element.text = '';
         });
+        selected = -1;
+    }
+    
+    void edit() {
+        switch (selectedType) {
+            case ItemType.constant:
+                itemData[selected] = (Constant(
+                    controller[0].text.toDouble(),
+                ));
+                break;
+            case ItemType.point:
+                itemData[selected] = (Point(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                ));
+                break;
+            case ItemType.vertex:
+                itemData[selected] = (Vertex(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                ));
+                break;
+            case ItemType.root:
+                itemData[selected] = (Root(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                ));
+                break;
+            case ItemType.line:
+                itemData[selected] = (Line(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                ));
+                break;
+            case ItemType.quadraticFactored:
+                itemData[selected] = (QuadraticFactored(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                    controller[2].text.toDouble(),
+                ));
+                break;
+            case ItemType.quadraticStandard:
+                itemData[selected] = (QuadraticStandard(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                    controller[2].text.toDouble(),
+                ));
+                break;
+            case ItemType.quadraticVertex:
+                itemData[selected] = (QuadraticVertex(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                    controller[2].text.toDouble(),
+                ));
+                break;
+            case ItemType.equation:
+                itemData[selected] = (Equation([]));
+                break;
+            case ItemType.item:
+                itemData[selected] = (Item([]));
+                break;
+        }
     }
     
     Widget options(BuildContext context) {
@@ -92,6 +157,7 @@ class _InputScreenState extends State<InputScreen> {
             onChanged: (ItemType value) {
                 setState(() {
                     selectedType = value;
+                    if (selected != -1) edit();
                 });
             },
             items: (ItemType.values).map((e) =>
@@ -106,9 +172,30 @@ class _InputScreenState extends State<InputScreen> {
     Widget input(BuildContext context) {
         int inputCount = selectedType.dataCount();
         List<Widget> inputs = List<Widget>();
-        if (inputCount >= 1) inputs.add(TextField(controller: controller[0]));
-        if (inputCount >= 2) inputs.add(TextField(controller: controller[1]));
-        if (inputCount >= 3) inputs.add(TextField(controller: controller[2]));
+        if (inputCount >= 1) inputs.add(TextField(
+            controller: controller[0],
+            onChanged: (value) {
+                setState(() {
+                    edit();
+                });
+            },
+        ));
+        if (inputCount >= 2) inputs.add(TextField(
+            controller: controller[1],
+            onChanged: (value) {
+                setState(() {
+                    edit();
+                });
+            },
+        ));
+        if (inputCount >= 3) inputs.add(TextField(
+            controller: controller[2],
+            onChanged: (value) {
+                setState(() {
+                    edit();
+                });
+            },
+        ));
         if (inputCount <= 0)
             return Container();
         else
@@ -140,8 +227,8 @@ class _InputScreenState extends State<InputScreen> {
                         int i = 0;
                         controller.forEach((element) {
                             if (i < itemData[index].values.length) element.text = itemData[index].values[i++].toString();
+                            else element.text = '';
                         });
-                        
                     });
                 },
             ),
@@ -154,13 +241,20 @@ class _InputScreenState extends State<InputScreen> {
             backgroundColor: Theme
               .of(context)
               .backgroundColor,
-            body: Column(
-                children: <Widget>[
-                    SizedBox(height: 70,),
-                    options(context),
-                    input(context),
-                    items(context),
-                ],
+            body: GestureDetector(
+                onTap: () {
+                    setState(() {
+                        selected = -1;
+                    });
+                },
+                child: Column(
+                    children: <Widget>[
+                        SizedBox(height: 70,),
+                        options(context),
+                        input(context),
+                        items(context),
+                    ],
+                ),
             ),
             floatingActionButton: FloatingActionButton(
                 elevation: 8,

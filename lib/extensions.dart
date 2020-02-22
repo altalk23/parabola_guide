@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:flutter/material.dart';
+
 const String superscripts = '⁰¹²³⁴⁵⁶⁷⁸⁹';
 
 extension AddDegree on String {
@@ -16,6 +18,7 @@ extension AddDegree on String {
     }
     
     double toDouble() {
+        if (this == '') return 0;
         return double.parse(this);
     }
 }
@@ -53,14 +56,5 @@ extension Factoring on double {
     String constantString() {
         if (this == 0) return '';
         return (this < 0 ? ' - ' : ' + ') + '${this.abs()}';
-    }
-}
-
-HashMap<int, int> a;
-
-
-extension Enumerate<T> on Iterable<T> {
-    HashMap<int, T> get enumerate {
-        return HashMap<int, T>.fromIterables(List<int>.generate(this.length, (index) => index), this);
     }
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:parabola_guide/item/item_type.dart';
 import 'package:parabola_guide/item/item.dart';
 import 'package:parabola_guide/extensions.dart';
@@ -18,5 +20,14 @@ class Equation extends Item {
             }
         });
         return buffer.toString();
+    }
+    
+    double f(double x) {
+        double ans = 0;
+        int exp = values.length;
+        values.forEach((element) {
+            ans += pow(element, --exp);
+        });
+        return ans;
     }
 }

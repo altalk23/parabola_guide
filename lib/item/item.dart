@@ -11,6 +11,6 @@ class Item {
     
     @override
     String toString() {
-        return '$values';
+        return '';
     }
 }

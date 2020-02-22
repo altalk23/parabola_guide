@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
                         ),
                     ),
                 ),
-                canvasColor: Colors.transparent,
                 fontFamily: 'Nunito',
                 textTheme: TextTheme(
                     body1: TextStyle(
