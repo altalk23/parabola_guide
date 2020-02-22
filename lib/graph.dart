@@ -103,13 +103,11 @@ class FunctionPainter extends CustomPainter {
     void paintPoint(Point p, Canvas canvas, Size size) {
         Paint paint = Paint();
         paint.style = PaintingStyle.stroke;
-        paint.strokeWidth = 2;
+        paint.strokeWidth = 4;
         paint.color = Color.fromARGB(255, random.nextInt(192), random.nextInt(192), random.nextInt(192));
     
-        Path path = Path();
-        path.moveTo(p.x, p.y);
-        path.lineTo(p.x, p.y);
-        canvas.drawPath(path, paint);
+        Tuple2 tuple = align(Tuple2(p.x, p.y), size);
+        canvas.drawCircle(Offset(tuple.item1, tuple.item2), 2, paint);
     }
     
     @override
