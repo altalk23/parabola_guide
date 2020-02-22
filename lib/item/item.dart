@@ -10,10 +10,10 @@ enum ItemType {
     vertex,
     root,
     line,
+    quadraticFactored,
+    quadraticStandard,
+    quadraticVertex,
     equation,
-    factoredForm,
-    standardForm,
-    vertexForm,
     item,
 }
 

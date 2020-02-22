@@ -2,5 +2,5 @@ import 'package:parabola_guide/item/item.dart';
 import 'package:parabola_guide/item/point.dart';
 
 class Vertex extends Point {
-    Vertex() : super.type(ItemType.vertex);
+    Vertex(double x, double y) : super.type(ItemType.vertex, x, y);
 }
