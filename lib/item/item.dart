@@ -1,4 +1,7 @@
 import 'package:parabola_guide/item/equation.dart';
+import 'package:parabola_guide/item/quadratic_factored.dart';
+import 'package:parabola_guide/item/quadratic_standard.dart';
+import 'package:parabola_guide/item/quadratic_vertex.dart';
 
 class Item {
     ItemType type;
@@ -33,12 +36,13 @@ extension on ItemType {
             return 1;
         else if (index <= 4)
             return 2;
-        else if (index <= 8) return 3;
+        else if (index <= 7) return 3;
+        else if (index <= 8) return -1;
         return 0;
     }
 }
 
 void main() {
-    Equation a = Equation([346, 24, 12123]);
+    Item a = QuadraticVertex(3, -23, 23);
     print(a);
 }

@@ -1,16 +1,5 @@
 import 'package:parabola_guide/item/item.dart';
-
-const String superscripts = '⁰¹²³⁴⁵⁶⁷⁸⁹';
-extension on int {
-    String toSuperscriptString() {
-        List<String> normal = this.toString().split('');
-        StringBuffer buffer = StringBuffer();
-        normal.forEach((element) {
-            buffer.write(superscripts[int.parse(element)]);
-        });
-        return buffer.toString();
-    }
-}
+import 'package:parabola_guide/extensions.dart';
 
 class Equation extends Item {
     final List<double> values;
@@ -24,11 +13,11 @@ class Equation extends Item {
         StringBuffer buffer = StringBuffer();
         Map<int, double> reverse = values.reversed.toList().asMap();
         reverse.forEach((key, value) {
-            if (key == 0) buffer.write(value < 0 ? '-' : '');
-            else buffer.write(value < 0 ? ' - ' : ' + ');
-            if (value.abs() != 1) buffer.write('$value');
-            if (key < values.length-1) buffer.write('x');
-            if (key < values.length-2) buffer.write('${(values.length-key-1).toSuperscriptString()}');
+            if (value != 0) {
+                if (key == 0) buffer.write(value.coefficentString().addXDegree(values.length-key-1));
+                else if (key == values.length-1)buffer.write(value.constantString().addXDegree(0));
+                else buffer.write(value.continueCoefficentString().addXDegree(values.length-key-1));
+            }
         });
         return buffer.toString();
     }
