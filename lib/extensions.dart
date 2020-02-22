@@ -14,6 +14,10 @@ extension AddDegree on String {
         else if (degree == 1) return this;
         else return this + degree.toSuperscriptString();
     }
+    
+    double toDouble() {
+        return double.parse(this);
+    }
 }
 
 extension Superscript on int {

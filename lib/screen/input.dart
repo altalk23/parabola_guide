@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:parabola_guide/item/constant.dart';
 import 'package:parabola_guide/item/item.dart';
 import 'package:parabola_guide/item/item_type.dart';
 import 'package:parabola_guide/extensions.dart';
+import 'package:parabola_guide/item/line.dart';
+import 'package:parabola_guide/item/point.dart';
+import 'package:parabola_guide/item/quadratic_factored.dart';
+import 'package:parabola_guide/item/quadratic_standard.dart';
+import 'package:parabola_guide/item/quadratic_vertex.dart';
+import 'package:parabola_guide/item/root.dart';
+import 'package:parabola_guide/item/vertex.dart';
 
 List<Item> itemData = [];
 
@@ -13,39 +21,63 @@ class InputScreen extends StatefulWidget {
 class _InputScreenState extends State<InputScreen> {
     int selected = -1;
     ItemType selectedType = ItemType.item;
-    List<TextEditingController> controller = List<TextEditingController>(3);
+    List<TextEditingController> controller = List<TextEditingController>.generate(3, (_) => TextEditingController());
     
     void add(BuildContext context) {
         switch (selectedType) {
             case ItemType.constant:
-            // TODO: Handle this case.
+                itemData.add(Constant(
+                    controller[0].text.toDouble(),
+                ));
                 break;
             case ItemType.point:
-            // TODO: Handle this case.
+                itemData.add(Point(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                ));
                 break;
             case ItemType.vertex:
-            // TODO: Handle this case.
+                itemData.add(Vertex(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                ));
                 break;
             case ItemType.root:
-            // TODO: Handle this case.
+                itemData.add(Root(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                ));
                 break;
             case ItemType.line:
-            // TODO: Handle this case.
+                itemData.add(Line(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                ));
                 break;
             case ItemType.quadraticFactored:
-            // TODO: Handle this case.
+                itemData.add(QuadraticFactored(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                    controller[2].text.toDouble(),
+                ));
                 break;
             case ItemType.quadraticStandard:
-            // TODO: Handle this case.
+                itemData.add(QuadraticStandard(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                    controller[2].text.toDouble(),
+                ));
                 break;
             case ItemType.quadraticVertex:
-            // TODO: Handle this case.
+                itemData.add(QuadraticVertex(
+                    controller[0].text.toDouble(),
+                    controller[1].text.toDouble(),
+                    controller[2].text.toDouble(),
+                ));
                 break;
             case ItemType.equation:
-            // TODO: Handle this case.
                 break;
             case ItemType.item:
-            // TODO: Handle this case.
                 break;
         }
         controller.forEach((element) {
@@ -74,9 +106,9 @@ class _InputScreenState extends State<InputScreen> {
     Widget input(BuildContext context) {
         int inputCount = selectedType.dataCount();
         List<Widget> inputs = List<Widget>();
-        if (inputCount >= 3) inputs.add(TextField(controller: controller[2]));
-        if (inputCount >= 2) inputs.add(TextField(controller: controller[1]));
         if (inputCount >= 1) inputs.add(TextField(controller: controller[0]));
+        if (inputCount >= 2) inputs.add(TextField(controller: controller[1]));
+        if (inputCount >= 3) inputs.add(TextField(controller: controller[2]));
         if (inputCount <= 0)
             return Container();
         else
@@ -94,25 +126,20 @@ class _InputScreenState extends State<InputScreen> {
         );
     }
     
-    ListTile item(BuildContext context, String title, String subtitle, int index) {
-        return ListTile(
-            title: Card(
-                color: index == selected ? Theme
-                  .of(context)
-                  .primaryColorLight : null,
-                child: Column(
-                    children: <Widget>[
-                        Text(title),
-                        Text(subtitle),
-                    ],
-                ),
+    Widget item(BuildContext context, String title, String subtitle, int index) {
+        return Card(
+            color: index == selected ? Theme
+              .of(context)
+              .primaryColorLight : null,
+            child: ListTile(
+                title: Text(title),
+                subtitle: Text(subtitle),
+                onTap: () {
+                    setState(() {
+                        selected = index;
+                    });
+                },
             ),
-            onTap: () {
-                setState(() {
-                    selected = index;
-                });
-                Navigator.pop(context);
-            },
         );
     }
     
@@ -133,7 +160,9 @@ class _InputScreenState extends State<InputScreen> {
             floatingActionButton: FloatingActionButton(
                 elevation: 8,
                 onPressed: () {
-                    add(context);
+                    setState(() {
+                        add(context);
+                    });
                 },
                 child: Container(
                     alignment: Alignment(0, 1),
