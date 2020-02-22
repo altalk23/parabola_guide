@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'equation.dart';
 
+List<Equation> painterEquations = List<Equation>();
 
 class FunctionPainter extends CustomPainter {
     Random random = Random();
-    List<Equation> equation = List<Equation>();
     double ws = -10,
       we = 10,
       hs = -10,
@@ -23,17 +23,7 @@ class FunctionPainter extends CustomPainter {
         );
     }
     
-    double function(Equation eq, double d) => eq.a * d * d + eq.b * d + eq.c;
-    
     FunctionPainter();
-    
-    void addEquation(List<Equation> eq) {
-        equation.add(Equation.fromStandard(2, 2, 2));
-        
-        eq.forEach((e) {
-            equation.add(e);
-        });
-    }
     
     @override
     void paint(Canvas canvas, Size size) {
@@ -56,11 +46,11 @@ class FunctionPainter extends CustomPainter {
         canvas.drawPath(path, paint);
         
         paint.strokeWidth = 4;
-        equation.forEach((eq) {
+        painterEquations.forEach((eq) {
             path = Path();
             paint.color = Color.fromARGB(255, random.nextInt(192), random.nextInt(192), random.nextInt(192));
             for (double d = ws; d <= we; d += (we - ws) / density) {
-                p = align(Point(d, function(eq, d)), size);
+                p = align(Point(d, eq.f(d)), size);
                 if (d == ws)
                     path.moveTo(p.x, p.y);
                 else

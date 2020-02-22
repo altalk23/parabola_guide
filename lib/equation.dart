@@ -15,14 +15,16 @@ enum EquationType {
     factored,
 }
 
-
 class Equation {
     final double a;
     final double b;
     final double c;
     final EquationType type;
-
+    
+    double f(double x) => a * x * x + b * x + c;
+    
     Equation(this.a, this.b, this.c) : this.type = EquationType.standard;
+    
     Equation.fromStandard(this.a, this.b, this.c) : this.type = EquationType.standard;
     
     Equation.fromVertex(this.a, double h, double k)
@@ -139,7 +141,8 @@ class Equation {
                 str += ")";
             }
         }
-        else str += "0";
+        else
+            str += "0";
         return str;
     }
     

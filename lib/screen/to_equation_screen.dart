@@ -1,10 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
 import 'package:parabola_guide/text_style.dart';
 import 'dart:math';
+import '../equation.dart';
 
 List<ToEquationData> toEquationData = [
-    ToEquationData("Lorem ipsum", 5.6, 2.4),
+    ToEquationData("Vertex", 5.6, 2.4),
 ];
 
 class ToEquationScreen extends StatefulWidget {
@@ -14,7 +16,17 @@ class ToEquationScreen extends StatefulWidget {
 
 class _ToEquationScreenState extends State<ToEquationScreen> {
     Random random = Random();
+    TextEditingController xController = TextEditingController();
+    TextEditingController yController = TextEditingController();
+    int selected = -1;
+    String selectedName = '';
     
+    
+    void dispose() {
+        xController.dispose();
+        yController.dispose();
+        super.dispose();
+    }
     
     ListTile options(BuildContext context, String icon, String name) {
         return ListTile(
@@ -28,11 +40,11 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
             ),
             onTap: () {
                 setState(() {
-                    toEquationData.add(ToEquationData(
-                        name,
-                        (random.nextDouble() - 0.5) * 20,
-                        name == "Constant" || name == "Root" ? double.infinity : (random.nextDouble() - 0.5) * 20,
-                    ));
+                    toEquationData.add(ToEquationData(name, 0, 0));
+                    selected = toEquationData.length - 1;
+                    xController.text = '';
+                    yController.text = '';
+                    
                 });
                 Navigator.pop(context);
             },
@@ -60,45 +72,102 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
         );
     }
     
+    bool ifconstant() {
+        return toEquationData[selected].name == 'Constant';
+    }
+    
+    Widget ifConstant() {
+        return Row(
+            children: <Widget>[
+                Expanded(
+                    child: TextField(
+                        controller: xController,
+                        onChanged: (String value) {
+                            setState(() {
+                                toEquationData[selected] = ToEquationData.withX(double.parse(value), toEquationData[selected]);
+                            });
+                        },
+                    ),
+                ),
+                ifconstant() ? Container() : Expanded(
+                    child: TextField(
+                        controller: yController,
+                        onChanged: (String value) {
+                            setState(() {
+                                toEquationData[selected] = ToEquationData.withY(double.parse(value), toEquationData[selected]);
+                            });
+                        },
+                    ),
+                ),
+            ],
+        );
+    }
+    
     @override
     Widget build(BuildContext context) {
         return Scaffold(
             backgroundColor: Theme
               .of(context)
               .backgroundColor,
-            body: Container(
-                decoration: scaffoldDecoration(context),
-                child: Center(
-                    child: ListView.builder(
-                        itemBuilder: (context, index) {
-                            return Card(
-                                child: Container(
-                                    decoration: cardDecoration(context),
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                            Text(
-                                                toEquationData[index].name,
-                                                style: Theme
-                                                  .of(context)
-                                                  .textTheme
-                                                  .subtitle,
+            body: Center(
+                child: Column(
+                    children: <Widget>[
+                        SizedBox(height: 70,),
+                        selected < 0 ? Container() : DropdownButton<String>(
+                            value: toEquationData[selected].name,
+                            onChanged: (value) {
+                                setState(() {
+                                    toEquationData[selected] = ToEquationData.withName(value, toEquationData[selected]);
+                                });
+                            },
+                            items: ['Vertex', 'Root', 'Point', 'Constant'].map((String e) =>
+                              DropdownMenuItem<String>(
+                                  child: Text(e),
+                                  value: e,
+                              )).toList(),
+                        ),
+                        selected < 0 ? Container() : ifConstant(),
+                        Expanded(
+                            child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                        onTap: () {
+                                            setState(() {
+                                                xController.text = toEquationData[index].x.toString();
+                                                yController.text = toEquationData[index].y.toString();
+                                                selected = index;
+                                            });
+                                        },
+                                        child: Card(
+                                            color: index == selected ? Theme
+                                              .of(context)
+                                              .primaryColorLight : null,
+                                            child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                    Text(
+                                                        toEquationData[index].name,
+                                                        style: Theme
+                                                          .of(context)
+                                                          .textTheme
+                                                          .subtitle,
+                                                    ),
+                                                    Text(
+                                                        toEquationData[index].toString(),
+                                                        style: Theme
+                                                          .of(context)
+                                                          .textTheme
+                                                          .body1,
+                                                    ),
+                                                ],
                                             ),
-                                            Text(
-                                                toEquationData[index].toString(),
-                                                style: Theme
-                                                  .of(context)
-                                                  .textTheme
-                                                  .body1,
-                                            ),
-                                        ],
-                                    ),
-                                ),
-                            );
-                        },
-                        itemCount: toEquationData.length,
-                    ),
+                                        ),
+                                    );
+                                },
+                                itemCount: toEquationData.length,
+                            ),
+                        ),
+                    ],
                 ),
             ),
             floatingActionButton: FloatingActionButton(
@@ -122,16 +191,36 @@ class _ToEquationScreenState extends State<ToEquationScreen> {
     }
 }
 
+extension on double {
+    double roundPrecision(int precision) {
+        return (this * pow(10, precision)).round() / pow(10, precision);
+    }
+}
+
 class ToEquationData {
     final String name;
     final double x;
     final double y;
     
     ToEquationData(this.name, this.x, this.y);
-
+    
+    ToEquationData.withName(this.name, ToEquationData data)
+      : this.x = data.x,
+          this.y = data.y;
+    
+    ToEquationData.withX(this.x, ToEquationData data)
+      : this.name = data.name,
+          this.y = data.y;
+    
+    ToEquationData.withY(this.y, ToEquationData data)
+      : this.x = data.x,
+          this.name = data.name;
+    
     @override
     String toString() {
-        if (y == double.infinity) return "$x";
-        else return "($x, $y)";
+        if (name == 'Constant')
+            return "${x.roundPrecision(precision)}";
+        else
+            return "(${x.roundPrecision(precision)}, ${y.roundPrecision(precision)})";
     }
 }
