@@ -1,0 +1,17 @@
+Standard Form: | |QuadraticStandard1| |
+
+Step 1: Find axis of symmetry.
+x = -b / 2a
+x = -(| |scs(QuadraticStandard1B)| |)/2(| |scs(QuadraticStandard1A)| |)
+x = | |scs(-QuadraticStandard1B)| |/| |scs(2*QuadraticStandard1A)| |
+x = | |scs((-QuadraticStandard1B)/(2*QuadraticStandard1A))| |
+
+Step 2: Plug in to find f(x).
+f(| |scs((-QuadraticStandard1B)/(2*QuadraticStandard1A))| |) = | |sces(QuadraticStandard1A)| |(| |scs((-QuadraticStandard1B)/(2*QuadraticStandard1A))| |)²| |ces(QuadraticStandard1B)| |(| |scs((-QuadraticStandard1B)/(2*QuadraticStandard1A))| |)| |cs(QuadraticStandard1C)| |
+
+Step 3: The rest is algebra.
+f(| |scs((-QuadraticStandard1B)/(2*QuadraticStandard1A))| |) = | |scs(QuadraticStandard1A * ((-QuadraticStandard1B)/(2*QuadraticStandard1A)) * ((-QuadraticStandard1B)/(2*QuadraticStandard1A)))| || |cs(QuadraticStandard1B * ((-QuadraticStandard1B)/(2*QuadraticStandard1A)))| || |cs(QuadraticStandard1C)| |
+f(| |scs((-QuadraticStandard1B)/(2*QuadraticStandard1A))| |) = | |scs(QuadraticStandard1A * ((-QuadraticStandard1B)/(2*QuadraticStandard1A)) * ((-QuadraticStandard1B)/(2*QuadraticStandard1A)) + QuadraticStandard1B * ((-QuadraticStandard1B)/(2*QuadraticStandard1A)) + QuadraticStandard1C)| |
+
+Step 4: Write out.
+| |Vertex((-QuadraticStandard1B)/(2*QuadraticStandard1A), QuadraticStandard1A * ((-QuadraticStandard1B)/(2*QuadraticStandard1A)) * ((-QuadraticStandard1B)/(2*QuadraticStandard1A)) + QuadraticStandard1B * ((-QuadraticStandard1B)/(2*QuadraticStandard1A)) + QuadraticStandard1C)| |

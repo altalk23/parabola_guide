@@ -128,7 +128,12 @@ class SolverHelper {
             // TODO: Handle this case.
                 break;
             case SolutionType.FindVertexOfEquation:
-            // TODO: Handle this case.
+                String vertex(double x, double y) {
+                    return Vertex(x, y).toString();
+                }
+                context.addAll({
+                    'Vertex': vertex,
+                });
                 break;
             case SolutionType.FindEquationWithGivenTwoRootsAndOnePoint:
             // TODO: Handle this case.
