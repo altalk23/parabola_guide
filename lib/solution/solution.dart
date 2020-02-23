@@ -7,20 +7,18 @@ import 'package:parabola_guide/solution/type.dart';
 
 class Solver {
     final List<Item> items;
-    SolverHelper helper;
+    List<SolverHelper> helper = List<SolverHelper>();
     
     Solver(this.items) {
-        HashSet<ItemType> type = HashSet.from(items.map((e) => e.type));
+        List<ItemType> type = items.map((e) => e.type).toList();
         SolutionType.values.forEach((element) {
-            print(element);
-            print(element.isThis(type));
             if (element.isThis(type)) {
-                helper = SolverHelper(element, items);
+                helper.add(SolverHelper(element, items));
             }
         });
     }
     
-    String solve() {
-        return helper.solve();
+    List<String> solve() {
+        return List.generate(helper.length, (index) => helper[index].solve());
     }
 }

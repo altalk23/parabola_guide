@@ -213,35 +213,35 @@ class _InputScreenState extends State<InputScreen> {
         );
     }
     
-    Widget item(BuildContext context, String title, String subtitle, int index) {
-        return Card(
-            color: index == selected ? Theme
-              .of(context)
-              .primaryColorLight : null,
-            child: ListTile(
-                title: Text(title),
-                subtitle: Text(subtitle),
-                onTap: () {
-                    setState(() {
-                        if (selected != index) {
-                            selected = index;
-                            int i = 0;
-                            controller.forEach((element) {
-                                if (i < itemData[index].values.length) element.text = itemData[index].values[i++].toString();
-                                else element.text = '';
-                            });
-                        }
-                        else {
-                            selected = -1;
-                            itemData.removeAt(index);
-                            controller.forEach((element) {
-                                element.text = '';
-                            });
-                        }
-                    });
-                },
-            ),
-        );
+        Widget item(BuildContext context, String title, String subtitle, int index) {
+            return Card(
+                color: index == selected ? Theme
+                  .of(context)
+                  .primaryColorLight : null,
+                child: ListTile(
+                    title: Text(title),
+                    subtitle: Text(subtitle),
+                    onTap: () {
+                        setState(() {
+                            if (selected != index) {
+                                selected = index;
+                                int i = 0;
+                                controller.forEach((element) {
+                                    if (i < itemData[index].values.length) element.text = itemData[index].values[i++].toString();
+                                    else element.text = '';
+                                });
+                            }
+                            else {
+                                selected = -1;
+                                itemData.removeAt(index);
+                                controller.forEach((element) {
+                                    element.text = '';
+                                });
+                            }
+                        });
+                    },
+                ),
+            );
     }
     
     @override

@@ -22,28 +22,34 @@ enum SolutionType {
     FindSumOfRootsWithGivenVertex,
 }
 
-HashMap<SolutionType, HashSet<ItemType>> ingredients = HashMap.from(<SolutionType, HashSet<ItemType>>{
-    SolutionType.FindRootsFromFactoredForm: HashSet.from([ItemType.quadraticFactored]),
-    SolutionType.FindRootsFromVertexForm: HashSet.from([ItemType.quadraticVertex]),
-    SolutionType.FindRootsFromStandardFormUsingFactoring: HashSet.from([ItemType.quadraticStandard]),
-    SolutionType.FindRootsFromStandardFormUsingCompletingTheSquare: HashSet.from([ItemType.quadraticStandard]),
-    SolutionType.FindRootsFromStandardFormUsingDiscriminant: HashSet.from([ItemType.quadraticStandard]),
-    SolutionType.FindSumAndProductOfRoots: HashSet.from([ItemType.quadraticStandard]),
-    SolutionType.FindVertexOfEquation:HashSet.from([ItemType.quadraticStandard]),
-    SolutionType.FindEquationWithGivenTwoRootsAndOnePoint: HashSet.from([ItemType.root, ItemType.root, ItemType.point]),
-    SolutionType.FindEquationWithGivenVertexAndOnePoint: HashSet.from([ItemType.vertex, ItemType.point]),
-    SolutionType.FindEquationWithGivenOneRootAndTwoPoints: HashSet.from([ItemType.root, ItemType.point, ItemType.point]),
-    SolutionType.FindEquationWithGivenThreePoints: HashSet.from([ItemType.point, ItemType.point, ItemType.point]),
-    SolutionType.FindDiscriminantOfEquation: HashSet.from([ItemType.quadraticStandard]),
-    SolutionType.FindIntersectionsOfParabolaAndLine: HashSet.from([ItemType.quadraticStandard, ItemType.line]),
-    SolutionType.FindIntersectionsOfTwoParabolas: HashSet.from([ItemType.quadraticStandard, ItemType.quadraticStandard]),
-    SolutionType.SketchTheVertexFormLabelingImportantPoints: HashSet.from([ItemType.quadraticVertex]),
-    SolutionType.SketchTheFactoredFormLabelingImportantPoints: HashSet.from([ItemType.quadraticFactored]),
-    SolutionType.FindSumOfRootsWithGivenVertex: HashSet.from([ItemType.vertex, ItemType.vertex]),
+HashMap<SolutionType, List<ItemType>> ingredients = HashMap.from(<SolutionType, List<ItemType>>{
+    SolutionType.FindRootsFromFactoredForm: [ItemType.quadraticFactored],
+    SolutionType.FindRootsFromVertexForm: [ItemType.quadraticVertex],
+    SolutionType.FindRootsFromStandardFormUsingFactoring: [ItemType.quadraticStandard],
+    SolutionType.FindRootsFromStandardFormUsingCompletingTheSquare: [ItemType.quadraticStandard],
+    SolutionType.FindRootsFromStandardFormUsingDiscriminant: [ItemType.quadraticStandard],
+    SolutionType.FindSumAndProductOfRoots: [ItemType.quadraticStandard],
+    SolutionType.FindVertexOfEquation:[ItemType.quadraticStandard],
+    SolutionType.FindEquationWithGivenTwoRootsAndOnePoint: [ItemType.root, ItemType.root, ItemType.point],
+    SolutionType.FindEquationWithGivenVertexAndOnePoint: [ItemType.vertex, ItemType.point],
+    SolutionType.FindEquationWithGivenOneRootAndTwoPoints: [ItemType.root, ItemType.point, ItemType.point],
+    SolutionType.FindEquationWithGivenThreePoints: [ItemType.point, ItemType.point, ItemType.point],
+    SolutionType.FindDiscriminantOfEquation: [ItemType.quadraticStandard],
+    SolutionType.FindIntersectionsOfParabolaAndLine: [ItemType.quadraticStandard, ItemType.line],
+    SolutionType.FindIntersectionsOfTwoParabolas: [ItemType.quadraticStandard, ItemType.quadraticStandard],
+    SolutionType.SketchTheVertexFormLabelingImportantPoints: [ItemType.quadraticVertex],
+    SolutionType.SketchTheFactoredFormLabelingImportantPoints: [ItemType.quadraticFactored],
+    SolutionType.FindSumOfRootsWithGivenVertex: [ItemType.vertex, ItemType.vertex],
 });
 
 extension SolutionIngredients on SolutionType {
-    bool isThis(HashSet<ItemType> type) {
-        return type.where((element) => ingredients[this].contains(element)).toList().length == ingredients[this].length; //this solution is contained
+    bool isThis(List<ItemType> type) {
+        ingredients[this].sort((a, b) => ItemType.values.indexOf(a).compareTo(ItemType.values.indexOf(b)));
+        type.sort((a, b) => ItemType.values.indexOf(a).compareTo(ItemType.values.indexOf(b)));
+        int idx = 0;
+        type.forEach((element) {
+            if (idx < ingredients[this].length && ingredients[this][idx] == element) ++idx;
+        });
+        return idx == ingredients[this].length;
     }
 }

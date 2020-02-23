@@ -49,9 +49,7 @@ class SolverHelper {
         return (a < 0 ? ' - ' : ' + ') + '${a.abs()}';
     }
 
-    String quadraticVertex(double a, double h, double k) {
-        return QuadraticVertex(a, h, k).toString();
-    }
+    
     
     String solve() {
         StringBuffer buffer = StringBuffer();
@@ -63,7 +61,8 @@ class SolverHelper {
         };
         items.forEach((element) {
             int idx = 1;
-            while (!context.containsKey('${element.name()}$idx')) ++idx;
+            print('${element.name()}$idx');
+            while (context.containsKey('${element.name()}$idx')) ++idx;
             context.putIfAbsent('${element.name()}$idx', () => element.toString());
             if (element is Point) {
                 context.addAll({
@@ -104,6 +103,7 @@ class SolverHelper {
                 });
             }
         });
+        print("asdg");
         
         
         const ExpressionEvaluator evaluator = const ExpressionEvaluator();
@@ -134,6 +134,11 @@ class SolverHelper {
             // TODO: Handle this case.
                 break;
             case SolutionType.FindEquationWithGivenVertexAndOnePoint:
+    
+                String quadraticVertex(double a, double h, double k) {
+                    return QuadraticVertex(a, h, k).toString();
+                }
+                
                 context.addAll({
                     'QuadraticVertex': quadraticVertex,
                 });
@@ -142,6 +147,7 @@ class SolverHelper {
                         buffer.write(element);
                     } 
                     else { // Expression
+                        print(element);
                         Expression expression = Expression.parse(element);
                         buffer.write(evaluator.eval(expression, context));
                     }

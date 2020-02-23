@@ -6,8 +6,14 @@ import 'package:parabola_guide/screen/input.dart';
 import 'package:parabola_guide/solution/solution.dart';
 import 'package:parabola_guide/text_style.dart';
 
-class SolverScreen extends StatelessWidget {
-    final Solver solver = Solver(itemData);
+class SolverScreen extends StatefulWidget {
+    @override
+    _SolverScreenState createState() => _SolverScreenState();
+}
+
+class _SolverScreenState extends State<SolverScreen> {
+    
+    Solver solver = Solver(itemData);
     
     Container canvas(BuildContext context) {
         return Container(
@@ -54,12 +60,12 @@ class SolverScreen extends StatelessWidget {
                 canvas(context),
                 expandingCard(
                     dummyTitleToEquation[0],
-                    solver.solve(),
+                    dummyTextToEquation[0],
                     context,
                 ),
                 expandingCard(
                     dummyTitleToEquation[1],
-                    dummyTextToEquation[1],
+                    dummyTextToEquation.length > 1 ? dummyTextToEquation[1] : '',
                     context,
                 ),
             ],
@@ -87,7 +93,7 @@ class SolverScreen extends StatelessWidget {
                             ),
                             expandingCard(
                                 dummyTitleToEquation[1],
-                                dummyTextToEquation[1],
+                                dummyTextToEquation.length > 1 ? dummyTextToEquation[1] : '',
                                 context,
                             ),
                         ],
@@ -112,6 +118,13 @@ class SolverScreen extends StatelessWidget {
                   .of(context)
                   .size
                   .height ? portrait(context) : landsacpe(context),
+            ),
+            floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                    setState(() {
+                        dummyTextToEquation = solver.solve();
+                    });
+                },
             ),
         );
     }

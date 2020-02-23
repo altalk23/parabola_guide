@@ -27,6 +27,6 @@ class QuadraticFactored extends Equation {
     }
     
     double f(double x) {
-        return a * x * x + b * x + c;
-    }
+    return a * x * x + b * x + c;
+}
 }

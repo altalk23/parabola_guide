@@ -14,4 +14,4 @@ Step 3: The rest is algebra.
 a = | |scs((Point1Y-Vertex1Y)/((Point1X-Vertex1X)*(Point1X-Vertex1X)))| |
 
 Step 4: Write out.
-f(x) = | |QuadraticVertex1(((Point1Y-Vertex1Y)/((Point1X-Vertex1X)*(Point1X-Vertex1X))), Vertex1X, Vertex1Y)| |
+f(x) = | |QuadraticVertex(((Point1Y-Vertex1Y)/((Point1X-Vertex1X)*(Point1X-Vertex1X))), Vertex1X, Vertex1Y)| |

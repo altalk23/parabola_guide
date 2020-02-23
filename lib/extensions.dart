@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/item/item.dart';
+import 'package:parabola_guide/item/item_type.dart';
 
 const String superscripts = '⁰¹²³⁴⁵⁶⁷⁸⁹';
 
