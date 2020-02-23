@@ -86,7 +86,7 @@ class _SolverScreenState extends State<SolverScreen> {
                       .size
                       .height,
                     child: ListView(
-                        children: List<Widget>.generate(dummyTextToEquation.length, (index) =>
+                        children: List<Widget>.generate(explanations.length, (index) =>
                           expandingCard(
                               titles[index],
                               explanations[index],
