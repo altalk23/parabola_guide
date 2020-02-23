@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
+import 'package:parabola_guide/extensions.dart';
 import 'package:parabola_guide/dummy.dart';
 import 'package:parabola_guide/graph.dart';
 import 'package:parabola_guide/screen/input.dart';
@@ -11,9 +12,12 @@ class SolverScreen extends StatefulWidget {
     _SolverScreenState createState() => _SolverScreenState();
 }
 
+
+
 class _SolverScreenState extends State<SolverScreen> {
     
     Solver solver = Solver(itemData);
+    List<String> titles = List<String>() , explanations = List<String>();
     
     Container canvas(BuildContext context) {
         return Container(
@@ -58,17 +62,14 @@ class _SolverScreenState extends State<SolverScreen> {
         return ListView(
             children: <Widget>[
                 canvas(context),
+            ] +
+              List<Widget>.generate(explanations.length, (index) =>
                 expandingCard(
-                    dummyTitleToEquation[0],
-                    dummyTextToEquation[0],
+                    titles[index],
+                    explanations[index],
                     context,
                 ),
-                expandingCard(
-                    dummyTitleToEquation[1],
-                    dummyTextToEquation.length > 1 ? dummyTextToEquation[1] : '',
-                    context,
-                ),
-            ],
+              ),
         );
     }
     
@@ -85,18 +86,13 @@ class _SolverScreenState extends State<SolverScreen> {
                       .size
                       .height,
                     child: ListView(
-                        children: <Widget>[
-                            expandingCard(
-                                dummyTitleToEquation[0],
-                                dummyTextToEquation[0],
-                                context,
-                            ),
-                            expandingCard(
-                                dummyTitleToEquation[1],
-                                dummyTextToEquation.length > 1 ? dummyTextToEquation[1] : '',
-                                context,
-                            ),
-                        ],
+                        children: List<Widget>.generate(dummyTextToEquation.length, (index) =>
+                          expandingCard(
+                              titles[index],
+                              explanations[index],
+                              context,
+                          ),
+                        ),
                     ),
                 ),
             ],
@@ -122,7 +118,8 @@ class _SolverScreenState extends State<SolverScreen> {
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
                     setState(() {
-                        dummyTextToEquation = solver.solve();
+                        explanations = solver.solve();
+                        titles = solver.types.map((e) => e.name()).toList();
                     });
                 },
             ),

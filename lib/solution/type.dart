@@ -39,7 +39,7 @@ HashMap<SolutionType, List<ItemType>> ingredients = HashMap.from(<SolutionType, 
     SolutionType.FindIntersectionsOfTwoParabolas: [ItemType.quadraticStandard, ItemType.quadraticStandard],
     SolutionType.SketchTheVertexFormLabelingImportantPoints: [ItemType.quadraticVertex],
     SolutionType.SketchTheFactoredFormLabelingImportantPoints: [ItemType.quadraticFactored],
-    SolutionType.FindSumOfRootsWithGivenVertex: [ItemType.vertex, ItemType.vertex],
+    SolutionType.FindSumOfRootsWithGivenVertex: [ItemType.vertex],
 });
 
 extension SolutionIngredients on SolutionType {

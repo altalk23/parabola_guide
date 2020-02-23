@@ -2,7 +2,8 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/item/item.dart';
-import 'package:parabola_guide/item/item_type.dart';
+import 'package:basic_utils/basic_utils.dart';
+import 'package:parabola_guide/solution/type.dart';
 
 const String superscripts = '⁰¹²³⁴⁵⁶⁷⁸⁹';
 
@@ -64,5 +65,18 @@ extension Factoring on double {
 extension Name on Item {
     String name() {
         return this.type.toString().split('.').last[0].toUpperCase() + this.type.toString().split('.').last.substring(1);
+    }
+}
+
+extension SolutionName on SolutionType {
+    String name() {
+        String name = this.toString().split('.').last;
+        StringBuffer buffer = StringBuffer();
+        buffer.write(name[0].toUpperCase());
+        name.substring(1).split('').forEach((element) {
+            if (element.toUpperCase() == element) buffer.write(' ');
+            buffer.write(element);
+        });
+        return buffer.toString();
     }
 }

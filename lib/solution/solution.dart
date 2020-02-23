@@ -8,12 +8,14 @@ import 'package:parabola_guide/solution/type.dart';
 class Solver {
     final List<Item> items;
     List<SolverHelper> helper = List<SolverHelper>();
+    List<SolutionType> types = List<SolutionType>();
     
     Solver(this.items) {
         List<ItemType> type = items.map((e) => e.type).toList();
         SolutionType.values.forEach((element) {
             if (element.isThis(type)) {
                 helper.add(SolverHelper(element, items));
+                types.add(element);
             }
         });
     }

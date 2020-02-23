@@ -134,23 +134,11 @@ class SolverHelper {
             // TODO: Handle this case.
                 break;
             case SolutionType.FindEquationWithGivenVertexAndOnePoint:
-    
                 String quadraticVertex(double a, double h, double k) {
                     return QuadraticVertex(a, h, k).toString();
                 }
-                
                 context.addAll({
                     'QuadraticVertex': quadraticVertex,
-                });
-                str.asMap().forEach((index, element) {
-                    if (index % 2 == 0) { // String
-                        buffer.write(element);
-                    } 
-                    else { // Expression
-                        print(element);
-                        Expression expression = Expression.parse(element);
-                        buffer.write(evaluator.eval(expression, context));
-                    }
                 });
                 break;
             case SolutionType.FindEquationWithGivenOneRootAndTwoPoints:
@@ -178,6 +166,16 @@ class SolverHelper {
             // TODO: Handle this case.
                 break;
         }
+        str.asMap().forEach((index, element) {
+            if (index % 2 == 0) { // String
+                buffer.write(element);
+            }
+            else { // Expression
+                print(element);
+                Expression expression = Expression.parse(element);
+                buffer.write(evaluator.eval(expression, context));
+            }
+        });
         print(buffer.toString());
         return buffer.toString();
     }
