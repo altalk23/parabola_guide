@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:parabola_guide/screen/main.dart';
 
+import 'package:parabola_guide/solution/helper.dart';
+import 'package:parabola_guide/solution/type.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -58,3 +61,4 @@ class MyApp extends StatelessWidget {
         );
     }
 }
+

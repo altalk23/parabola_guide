@@ -22,6 +22,7 @@ dependencies:
     tinycolor: ^1.0.2
     cupertino_icons: ^0.1.2
     tuple: any
+    expressions: ^0.1.5
 
 dev_dependencies:
     flutter_test:
@@ -45,9 +46,9 @@ flutter:
 
 
     assets:
-        -   assets/images/from_equation.png
-        -   assets/images/to_equation.png
-        -   assets/images/add.png
+        -   assets/images/
+        -   assets/fonts/
+        -   assets/solutions/
 
     fonts:
         -   family: Nunito

@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:parabola_guide/decoration.dart';
 import 'package:parabola_guide/dummy.dart';
 import 'package:parabola_guide/graph.dart';
+import 'package:parabola_guide/solution/helper.dart';
+import 'package:parabola_guide/solution/type.dart';
 import 'package:parabola_guide/text_style.dart';
 
 class SolverScreen extends StatelessWidget {
+    SolverHelper helper = SolverHelper(SolutionType.FindEquationWithGivenVertexAndOnePoint);
+    
     Container canvas(BuildContext context) {
         return Container(
             margin: EdgeInsets.all(16),
