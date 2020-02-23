@@ -20,10 +20,43 @@ class SolverHelper {
             solve();
         });
     }
+
+    String startConstantString(double a) {
+        if (a == 0) return '';
+        return '$a';
+    }
+
+    String constantString(double a) {
+        if (a == 0) return '';
+        return (a < 0 ? ' - ' : ' + ') + '${a.abs()}';
+    }
+
+    String startCoefficentString(double a) {
+        if (a == 0) return '';
+        if (a.abs() == 1) return a < 0 ? '-' : '';
+        return '$a';
+    }
+
+    String coefficentString(double a) {
+        if (a == 0) return '';
+        if (a.abs() == 1) return a < 0 ? ' - ' : ' + ';
+        return (a < 0 ? ' - ' : ' + ') + '${a.abs()}';
+    }
+
+    String quadraticVertex(double a, double h, double k) {
+        return QuadraticVertex(a, h, k).toString();
+    }
     
     void solve() {
         StringBuffer buffer = StringBuffer();
+        Map<String, dynamic> context = {
+            'ces': coefficentString,
+            'sces': startCoefficentString,
+            'cs': constantString,
+            'scs': startConstantString,
+        };
         const ExpressionEvaluator evaluator = const ExpressionEvaluator();
+        
         switch (type) {
             case SolutionType.FindRootsFromFactoredForm:
             // TODO: Handle this case.
@@ -50,31 +83,15 @@ class SolverHelper {
             // TODO: Handle this case.
                 break;
             case SolutionType.FindEquationWithGivenVertexAndOnePoint:
-                String coefficentString(double a) {
-                    if (a == 0) return '';
-                    return '$a';
-                }
-                
-                String constantString(double a) {
-                    if (a == 0) return '';
-                    return (a < 0 ? ' - ' : ' + ') + '${a.abs()}';
-                }
-
-                String quadraticVertex(double a, double h, double k) {
-                    return QuadraticVertex(a, h, k).toString();
-                }
-                
-                Map<String, dynamic> context = {
+                context.addAll({
                     'Vertex': Vertex(2, 6).toString(),
                     'Point': Point(5, -3).toString(),
                     'VertexX': Vertex(2, 6).x,
                     'PointX': Point(5, -3).x,
                     'VertexY': Vertex(2, 6).y,
                     'PointY': Point(5, -3).y,
-                    'coefficentString': coefficentString,
-                    'constantString': constantString,
                     'QuadraticVertex': quadraticVertex,
-                };
+                });
                 str.asMap().forEach((index, element) {
                     if (index % 2 == 0) { // String
                         buffer.write(element);

@@ -2,16 +2,16 @@ Vertex: | |Vertex| |
 Point: | |Point| |
 
 Step 1: Write in vertex form.
-f(x) = a(x | |constantString(-VertexX)| |)² | |constantString(VertexY)| |
+f(x) = a(x | |cs(-VertexX)| |)² | |cs(VertexY)| |
 
 Step 2: Plug in the point.
-| |coefficentString(PointY)| | = a(| |coefficentString(PointX)| | | |constantString((-VertexX))| |)²| |constantString(VertexY)| |
+| |scs(PointY)| | = a(| |scs(PointX)| | | |cs((-VertexX))| |)²| |cs(VertexY)| |
 
 Step 3: The rest is algebra.
-| |coefficentString(PointY)| | = a(| |coefficentString(PointX-VertexX)| |)²| |constantString(VertexY)| |
-| |coefficentString(PointY)| | = | |coefficentString((PointX-VertexX)*(PointX-VertexX))| |a| |constantString(VertexY)| |
-| |coefficentString(PointY-VertexY)| | = | |coefficentString((PointX-VertexX)*(PointX-VertexX))| |a
-a = | |coefficentString((PointY-VertexY)/((PointX-VertexX)*(PointX-VertexX)))| |
+| |scs(PointY)| | = a(| |scs(PointX-VertexX)| |)²| |cs(VertexY)| |
+| |scs(PointY)| | = | |sces((PointX-VertexX)*(PointX-VertexX))| |a| |cs(VertexY)| |
+| |scs(PointY-VertexY)| | = | |sces((PointX-VertexX)*(PointX-VertexX))| |a
+a = | |scs((PointY-VertexY)/((PointX-VertexX)*(PointX-VertexX)))| |
 
 Step 4: Write out.
 f(x) = | |QuadraticVertex(((PointY-VertexY)/((PointX-VertexX)*(PointX-VertexX))), VertexX, VertexY)| |
