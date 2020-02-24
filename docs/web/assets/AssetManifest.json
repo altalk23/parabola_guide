@@ -1,0 +1,126 @@
+{
+    "assets/fonts/.DS_Store": [
+        "assets/fonts/.DS_Store",
+        "assets/fonts/nunito/.DS_Store"
+    ],
+    "packages/cupertino_icons/assets/CupertinoIcons.ttf": [
+        "packages/cupertino_icons/assets/CupertinoIcons.ttf"
+    ],
+    "assets/solutions/FindDiscriminantOfEquation.txt": [
+        "assets/solutions/FindDiscriminantOfEquation.txt"
+    ],
+    "assets/solutions/FindEquationWithGivenOneRootAndTwoPoints.txt": [
+        "assets/solutions/FindEquationWithGivenOneRootAndTwoPoints.txt"
+    ],
+    "assets/solutions/FindEquationWithGivenThreePoints.txt": [
+        "assets/solutions/FindEquationWithGivenThreePoints.txt"
+    ],
+    "assets/solutions/FindEquationWithGivenTwoRootsAndOnePoint.txt": [
+        "assets/solutions/FindEquationWithGivenTwoRootsAndOnePoint.txt"
+    ],
+    "assets/solutions/FindEquationWithGivenVertexAndOnePoint.txt": [
+        "assets/solutions/FindEquationWithGivenVertexAndOnePoint.txt"
+    ],
+    "assets/solutions/FindIntersectionsOfParabolaAndLine.txt": [
+        "assets/solutions/FindIntersectionsOfParabolaAndLine.txt"
+    ],
+    "assets/solutions/FindIntersectionsOfTwoParabolas.txt": [
+        "assets/solutions/FindIntersectionsOfTwoParabolas.txt"
+    ],
+    "assets/solutions/FindRootsFromFactoredForm.txt": [
+        "assets/solutions/FindRootsFromFactoredForm.txt"
+    ],
+    "assets/solutions/FindRootsFromStandardFormUsingCompletingTheSquare.txt": [
+        "assets/solutions/FindRootsFromStandardFormUsingCompletingTheSquare.txt"
+    ],
+    "assets/solutions/FindRootsFromStandardFormUsingDiscriminant.txt": [
+        "assets/solutions/FindRootsFromStandardFormUsingDiscriminant.txt"
+    ],
+    "assets/solutions/FindRootsFromStandardFormUsingFactoring.txt": [
+        "assets/solutions/FindRootsFromStandardFormUsingFactoring.txt"
+    ],
+    "assets/solutions/FindRootsFromVertexForm.txt": [
+        "assets/solutions/FindRootsFromVertexForm.txt"
+    ],
+    "assets/solutions/FindSumAndProductOfRoots.txt": [
+        "assets/solutions/FindSumAndProductOfRoots.txt"
+    ],
+    "assets/solutions/FindSumOfRootsWithGivenVertex.txt": [
+        "assets/solutions/FindSumOfRootsWithGivenVertex.txt"
+    ],
+    "assets/solutions/FindVertexOfEquation.txt": [
+        "assets/solutions/FindVertexOfEquation.txt"
+    ],
+    "assets/fonts/latin%20modern%20roman%2010/Latin%20Modern%20Roman%2010-BoldItalic.otf": [
+        "assets/fonts/latin%20modern%20roman%2010/Latin%20Modern%20Roman%2010-BoldItalic.otf"
+    ],
+    "assets/fonts/latin%20modern%20roman%2010/Latin%20Modern%20Roman%2010-Italic.otf": [
+        "assets/fonts/latin%20modern%20roman%2010/Latin%20Modern%20Roman%2010-Italic.otf"
+    ],
+    "assets/fonts/nunito/Nunito-Black.ttf": [
+        "assets/fonts/nunito/Nunito-Black.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-BlackItalic.ttf": [
+        "assets/fonts/nunito/Nunito-BlackItalic.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-Bold.ttf": [
+        "assets/fonts/nunito/Nunito-Bold.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-BoldItalic.ttf": [
+        "assets/fonts/nunito/Nunito-BoldItalic.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-ExtraBold.ttf": [
+        "assets/fonts/nunito/Nunito-ExtraBold.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-ExtraBoldItalic.ttf": [
+        "assets/fonts/nunito/Nunito-ExtraBoldItalic.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-ExtraLight.ttf": [
+        "assets/fonts/nunito/Nunito-ExtraLight.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-ExtraLightItalic.ttf": [
+        "assets/fonts/nunito/Nunito-ExtraLightItalic.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-Italic.ttf": [
+        "assets/fonts/nunito/Nunito-Italic.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-Light.ttf": [
+        "assets/fonts/nunito/Nunito-Light.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-LightItalic.ttf": [
+        "assets/fonts/nunito/Nunito-LightItalic.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-Regular.ttf": [
+        "assets/fonts/nunito/Nunito-Regular.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-SemiBold.ttf": [
+        "assets/fonts/nunito/Nunito-SemiBold.ttf"
+    ],
+    "assets/fonts/nunito/Nunito-SemiBoldItalic.ttf": [
+        "assets/fonts/nunito/Nunito-SemiBoldItalic.ttf"
+    ],
+    "assets/solutions/SketchTheFactoredFormLabelingImportantPoints.txt": [
+        "assets/solutions/SketchTheFactoredFormLabelingImportantPoints.txt"
+    ],
+    "assets/solutions/SketchTheVertexFormLabelingImportantPoints.txt": [
+        "assets/solutions/SketchTheVertexFormLabelingImportantPoints.txt"
+    ],
+    "assets/images/add.png": [
+        "assets/images/add.png",
+        "assets/images/2.0x/add.png",
+        "assets/images/3.0x/add.png",
+        "assets/images/4.0x/add.png"
+    ],
+    "assets/images/from_equation.png": [
+        "assets/images/from_equation.png",
+        "assets/images/2.0x/from_equation.png",
+        "assets/images/3.0x/from_equation.png",
+        "assets/images/4.0x/from_equation.png"
+    ],
+    "assets/images/to_equation.png": [
+        "assets/images/to_equation.png",
+        "assets/images/2.0x/to_equation.png",
+        "assets/images/3.0x/to_equation.png",
+        "assets/images/4.0x/to_equation.png"
+    ]
+}

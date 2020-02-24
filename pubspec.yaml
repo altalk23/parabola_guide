@@ -29,6 +29,7 @@ dev_dependencies:
         sdk: flutter
     flutter_launcher_icons: "^0.7.3"
     basic_utils: any
+    http: any
 
 flutter_icons:
     android: true

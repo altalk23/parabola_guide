@@ -1,5 +1,6 @@
 import 'package:expressions/expressions.dart';
 import 'package:flutter/services.dart';
+import 'package:parabola_guide/fetch.dart';
 import 'package:parabola_guide/item/constant.dart';
 import 'package:parabola_guide/item/item.dart';
 import 'package:parabola_guide/item/line.dart';
@@ -17,36 +18,45 @@ class SolverHelper {
     final SolutionType type;
     
     SolverHelper(this.type, this.items) {
-        rootBundle.loadString('assets/solutions/${type
-          .toString()
-          .split('.')
-          .last}.txt').then((value) {
-            str = value.split('| |');
-        });
+        try {
+            rootBundle.loadString('assets/solutions/${type
+              .toString()
+              .split('.')
+              .last}.txt').then((value) {
+                str = value.split('| |');
+            });
+        }
+        catch (e) {
+            getContent('assets/solutions/${type
+              .toString()
+              .split('.')
+              .last}.txt').then((value) {
+                str = value.split('| |');
+            });
+        }
     }
-
+    
     String startConstantString(double a) {
         if (a == 0) return '';
         return '$a';
     }
-
+    
     String constantString(double a) {
         if (a == 0) return '';
         return (a < 0 ? ' - ' : ' + ') + '${a.abs()}';
     }
-
+    
     String startCoefficentString(double a) {
         if (a == 0) return '';
         if (a.abs() == 1) return a < 0 ? '-' : '';
         return '$a';
     }
-
+    
     String coefficentString(double a) {
         if (a == 0) return '';
         if (a.abs() == 1) return a < 0 ? ' - ' : ' + ';
         return (a < 0 ? ' - ' : ' + ') + '${a.abs()}';
     }
-
     
     
     String solve() {
