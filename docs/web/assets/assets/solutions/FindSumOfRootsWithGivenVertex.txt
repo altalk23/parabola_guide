@@ -1,11 +1,11 @@
-Vertex: | |Vertex1| |
+Vertex: #Vertex1#
 
 Step 1: Write the axis of symmetry.
--b / 2a = | |scs(Vertex1X)| |
+-b / 2a = #scs(Vertex1X)#
 
 Step 2: Turn into sum of roots.
--b / a = | |scs(Vertex1X*2)| |
+-b / a = #scs(Vertex1X*2)#
 
 Step 3: Write out.
 
-x₁ + x₂ = | |scs(Vertex1X*2)| |
+x₁ + x₂ = #scs(Vertex1X*2)#
