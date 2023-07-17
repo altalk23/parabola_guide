@@ -54,6 +54,10 @@ class SolverHelper {
     return (a < 0 ? ' - ' : ' + ') + '${a.abs()}';
   }
 
+  String negativeParenthesis(double a) {
+    return a < 0 ? '($a)' : '$a';
+  }
+
   String solve() {
     StringBuffer buffer = StringBuffer();
     Map<String, dynamic> context = {
@@ -61,6 +65,7 @@ class SolverHelper {
       'sces': startCoefficentString,
       'cs': constantString,
       'scs': startConstantString,
+      'np': negativeParenthesis,
     };
     items.forEach((element) {
       int idx = 1;

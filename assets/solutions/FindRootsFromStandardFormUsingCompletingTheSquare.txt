@@ -1,0 +1,15 @@
+Standard Form: #QuadraticStandard1#
+
+Step 1: Divide coefficients by a.
+x²#cs(QuadraticStandard1B / QuadraticStandard1A)#x#cs(QuadraticStandard1C / QuadraticStandard1A)#
+
+Step 2: Add 0 that completes the square.
+x²#cs(QuadraticStandard1B / QuadraticStandard1A)#x#cs(QuadraticStandard1C / QuadraticStandard1A)# + (#scs(-QuadraticStandard1C / QuadraticStandard1A + (QuadraticStandard1B*QuadraticStandard1B) / (4*QuadraticStandard1A*QuadraticStandard1A))##cs(QuadraticStandard1C / QuadraticStandard1A - (QuadraticStandard1B*QuadraticStandard1B) / (4*QuadraticStandard1A*QuadraticStandard1A))#)
+x²#cs(QuadraticStandard1B / QuadraticStandard1A)#x#cs(QuadraticStandard1C / QuadraticStandard1A - QuadraticStandard1C / QuadraticStandard1A + (QuadraticStandard1B*QuadraticStandard1B) / (4*QuadraticStandard1A*QuadraticStandard1A))##cs(QuadraticStandard1C / QuadraticStandard1A - (QuadraticStandard1B*QuadraticStandard1B) / (4*QuadraticStandard1A*QuadraticStandard1A))#
+(x#cs(QuadraticStandard1B / (2*QuadraticStandard1A))#)²#cs(QuadraticStandard1C / QuadraticStandard1A - (QuadraticStandard1B*QuadraticStandard1B) / (4*QuadraticStandard1A*QuadraticStandard1A))#
+
+Step 3: Multiply back by a.
+
+#sces(QuadraticStandard1A)#(x#cs(QuadraticStandard1B / (2*QuadraticStandard1A))#)²#cs(QuadraticStandard1C - (QuadraticStandard1B*QuadraticStandard1B) / (4*QuadraticStandard1A))#
+
+Step 4: Solve as the vertex form.

@@ -1,0 +1,11 @@
+Standard Form: #QuadraticStandard1#
+
+Step 1: Find the sum of the roots.
+x = -b / a
+x = #np(-QuadraticStandard1B)#/#np(QuadraticStandard1A)#
+x = #scs((-QuadraticStandard1B)/(QuadraticStandard1A))#
+
+Step 2: Find the product of the roots.
+x = c / a
+x = #np(QuadraticStandard1C)#/#np(QuadraticStandard1A)#
+x = #scs((QuadraticStandard1C)/(QuadraticStandard1A))#

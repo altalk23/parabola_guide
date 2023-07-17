@@ -1,0 +1,10 @@
+Standard Form: #QuadraticStandard1#
+
+Step 1: Write the discriminant equation.
+Δ = b² - 4ac
+
+Step 2: Plug in the values.
+Δ = #np(QuadraticStandard1B)#² - 4*#np(QuadraticStandard1A)#*#np(QuadraticStandard1C)#
+
+Step 3: Write out.
+Δ = #scs(QuadraticStandard1B*QuadraticStandard1B - 4*QuadraticStandard1A*QuadraticStandard1C)#
